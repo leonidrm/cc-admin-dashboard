@@ -1,38 +1,42 @@
 {
     "name": "labs64/laravel-boilerplate",
-    "description": "Laravel Boilerplate",
+    "description": "CC Dashboard",
     "type": "project",
-    "keywords": ["php", "framework", "laravel", "laravel7", "admin", "theme", "starter", "bootstrap", "boilerplate", "docker", "template", "social-login", "nodejs"],
-    "homepage": "https://github.com/Labs64/laravel-boilerplate",
+    "keywords": [
+        "php",
+        "framework",
+        "laravel",
+        "laravel8",
+        "admin",
+        "theme",
+        "starter",
+        "bootstrap",
+        "docker",
+        "nodejs"
+    ],
+    "homepage": "http://codecrew.us/",
     "license": "MIT",
     "authors": [
         {
-            "name": "Labs64 GmbH",
-            "email": "info@labs64.com",
-            "homepage": "https://www.labs64.com"
+            "name": "Code Crew",
+            "email": "crew@codecrew.us",
+            "homepage": "http://codecrew.us/"
         }
     ],
-    "support": {
-        "email": "info@labs64.com",
-        "issues": "https://github.com/Labs64/laravel-boilerplate/issues",
-        "wiki": "https://github.com/Labs64/laravel-boilerplate",
-        "source": "https://github.com/Labs64/laravel-boilerplate",
-        "docs": "https://github.com/Labs64/laravel-boilerplate"
-    },
     "require": {
         "php": ">=7.4.0",
         "albertcht/invisible-recaptcha": "^1.9",
-        "arcanedev/log-viewer": "^7.0",
+        "arcanedev/log-viewer": "^8.1",
         "creativeorange/gravatar": "^1.0",
         "davejamesmiller/laravel-breadcrumbs": "^5.2",
         "fruitcake/laravel-cors": "^1.0",
         "kyslik/column-sortable": "^6.1",
         "labs64/netlicensingclient-php": "^2.4",
         "laravel/framework": "^8.0",
-        "laravel/socialite": "^4.1",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
-        "laravelcollective/html": "^6.1.0"
+        "laravelcollective/html": "^6.1.0",
+        "ext-json": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
@@ -45,11 +49,11 @@
         "spatie/phpunit-watcher": "^1.12"
     },
     "autoload": {
-        "classmap": [
-            "database"
-        ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/",
+            "Database\\traits\\": "database/traits/"
         },
         "files": [
             "app/helpers.php"

@@ -15,6 +15,10 @@
 /**
  * Auth routes
  */
+
+
+use Illuminate\Support\Facades\Route;
+
 Route::group(['namespace' => 'Auth'], function () {
 
     // Authentication Routes...
@@ -39,10 +43,6 @@ Route::group(['namespace' => 'Auth'], function () {
         Route::get('confirm/{user_by_code}', 'ConfirmController@confirm')->name('confirm');
         Route::get('confirm/resend/{user_by_email}', 'ConfirmController@sendEmail')->name('confirm.send');
     }
-
-    // Social Authentication Routes...
-    Route::get('social/redirect/{provider}', 'SocialLoginController@redirect')->name('social.redirect');
-    Route::get('social/login/{provider}', 'SocialLoginController@login')->name('social.login');
 });
 
 /**

@@ -113,7 +113,7 @@ return [
         /*
          * The role the user is assigned to when they sign up from the frontend, not namespaced
          */
-        'default_role' => 'authenticated',
+        'default_role' => 'client',
 
         /*
          * Whether or not the user has to confirm their email when signing up
@@ -124,24 +124,6 @@ return [
          * Whether or not the users email can be changed on the edit profile screen
          */
         'change_email' => false,
-    ],
-
-    /**
-     * Configurations for the socialite
-     */
-    'socialite' => [
-
-        /**
-         * Disable social login for roles
-         */
-        'except_roles' => ['administrator'],
-
-        /*
-        * Socialite session variable name
-        * Contains the name of the currently logged in provider in the users session
-        * Makes it so social logins can not change passwords, etc.
-        */
-        'session_name' => 'socialite_provider',
     ],
 
     /*

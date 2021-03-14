@@ -1,13 +1,18 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
 use App\Models\Auth\Role\Role;
 use App\Notifications\Auth\ConfirmEmail;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Validation\Validator as IlluminateValidator;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Auth\User\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Ramsey\Uuid\Uuid;
@@ -48,9 +53,9 @@ class RegisterController extends Controller
      * Get a validator for an incoming registration request.
      *
      * @param  array $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @return IlluminateValidator
      */
-    protected function validator(array $data)
+    protected function validator(array $data): IlluminateValidator
     {
         $rules = [
             'name' => 'required|max:255',
@@ -69,9 +74,9 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array $data
-     * @return User|\Illuminate\Database\Eloquent\Model
+     * @return User
      */
-    protected function create(array $data)
+    protected function create(array $data): User
     {
         /** @var  $user User */
         $user = User::create([
@@ -92,8 +97,8 @@ class RegisterController extends Controller
     /**
      * Handle a registration request for the application.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Application|RedirectResponse|Response|Redirector
      */
     public function register(Request $request)
     {
@@ -110,9 +115,9 @@ class RegisterController extends Controller
     /**
      * The user has been registered.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param Request $request
      * @param  mixed $user
-     * @return mixed
+     * @return Application|RedirectResponse|Redirector
      */
     protected function registered(Request $request, $user)
     {
@@ -124,5 +129,7 @@ class RegisterController extends Controller
 
             return redirect(route('login'));
         }
+
+        return redirect(route('/'));
     }
 }

@@ -1,9 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
 
 class Authorize
 {
@@ -12,11 +13,11 @@ class Authorize
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
+     * @param  Request $request
+     * @param Closure $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $ability, $attributes = [])
+    public function handle(Request $request, Closure $next, $ability, $attributes = [])
     {
         $this->authorize($ability, $attributes);
 

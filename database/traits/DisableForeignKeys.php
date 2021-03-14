@@ -1,6 +1,6 @@
-<?php
-namespace Database\traits;
+<?php declare(strict_types=1);
 
+namespace Database\traits;
 
 use Illuminate\Support\Facades\DB;
 
@@ -12,7 +12,7 @@ trait DisableForeignKeys
     /**
      * @var array
      */
-    private $commands = [
+    private array $commands = [
         'mysql'  => [
             'enable'  => 'SET FOREIGN_KEY_CHECKS=1;',
             'disable' => 'SET FOREIGN_KEY_CHECKS=0;',

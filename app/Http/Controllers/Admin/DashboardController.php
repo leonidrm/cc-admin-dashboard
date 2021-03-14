@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
@@ -6,9 +6,14 @@ use App\Models\Auth\User\User;
 use Arcanedev\LogViewer\Entities\Log;
 use Arcanedev\LogViewer\Entities\LogEntry;
 use Carbon\Carbon;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Routing\Route;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Route;
+use Arcanedev\LogViewer\LogViewer;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -23,20 +28,18 @@ class DashboardController extends Controller
     }
 
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         $counts = [
-            'users' => \DB::table('users')->count(),
-            'users_unconfirmed' => \DB::table('users')->where('confirmed', false)->count(),
-            'users_inactive' => \DB::table('users')->where('active', false)->count(),
+            'users' => DB::table('users')->count(),
+            'users_unconfirmed' => DB::table('users')->where('confirmed', false)->count(),
+            'users_inactive' => DB::table('users')->where('active', false)->count(),
             'protected_pages' => 0,
         ];
 
-        foreach (\Route::getRoutes() as $route) {
+        foreach (Route::getRoutes() as $route) {
             foreach ($route->middleware() as $middleware) {
                 if (preg_match("/protection/", $middleware, $matches)) $counts['protected_pages']++;
             }
@@ -45,10 +48,9 @@ class DashboardController extends Controller
         return view('admin.dashboard', ['counts' => $counts]);
     }
 
-
-    public function getLogChartData(Request $request)
+    public function getLogChartData(Request $request): Response
     {
-        \Validator::make($request->all(), [
+        Validator::make($request->all(), [
             'start' => 'required|date|before_or_equal:now',
             'end' => 'required|date|after_or_equal:start',
         ])->validate();
@@ -56,13 +58,13 @@ class DashboardController extends Controller
         $start = new Carbon($request->get('start'));
         $end = new Carbon($request->get('end'));
 
-        $dates = collect(\LogViewer::dates())->filter(function ($value, $key) use ($start, $end) {
+        $dates = collect(LogViewer::dates())->filter(function ($value, $key) use ($start, $end) {
             $value = new Carbon($value);
             return $value->timestamp >= $start->timestamp && $value->timestamp <= $end->timestamp;
         });
 
 
-        $levels = \LogViewer::levels();
+        $levels = LogViewer::levels();
 
         $data = [];
 
@@ -74,7 +76,7 @@ class DashboardController extends Controller
 
             if ($dates->contains($start->format('Y-m-d'))) {
                 /** @var  $log Log */
-                $logs = \LogViewer::get($start->format('Y-m-d'));
+                $logs = LogViewer::get($start->format('Y-m-d'));
 
                 /** @var  $log LogEntry */
                 foreach ($logs->entries() as $log) {
@@ -88,7 +90,7 @@ class DashboardController extends Controller
         return response($data);
     }
 
-    public function getRegistrationChartData()
+    public function getRegistrationChartData(): Response
     {
 
         $data = [

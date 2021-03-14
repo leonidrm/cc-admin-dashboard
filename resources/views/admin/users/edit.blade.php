@@ -43,7 +43,7 @@
                     </div>
                 </div>
 
-                @if(!$user->hasRole('administrator'))
+                @if(!$user->hasOneRole(['administrator', 'editor']))
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="active" >
                             {{ __('views.admin.users.edit.active') }}

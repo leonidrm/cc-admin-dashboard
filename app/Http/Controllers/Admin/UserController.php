@@ -1,26 +1,29 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Auth\Role\Role;
 use App\Models\Auth\User\User;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View as IlluminateView;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Access\User\EloquentUserRepository;
-use Validator;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
-{   
+{
     /**
      * Repository
      *
-     * @var object
+     * @var EloquentUserRepository
      */
     protected $repository;
 
     /**
      * Construct
-     * 
+     *
      */
     public function __construct()
     {
@@ -30,7 +33,8 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return IlluminateView|Factory
      */
     public function index(Request $request)
     {
@@ -40,7 +44,8 @@ class UserController extends Controller
     /**
      * Restore Users
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return IlluminateView|Factory
      */
     public function restore(Request $request)
     {
@@ -51,14 +56,13 @@ class UserController extends Controller
      * Restore Users
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function restoreUser($id)
+    public function restoreUser(int $id): Response
     {
         $status = $this->repository->restore($id);
 
-        if($status)
-        {
+        if ($status) {
             return redirect()->route('admin.users')->withFlashSuccess('User Restored Successfully!');
         }
 
@@ -68,9 +72,9 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function create()
+    public function create(): Response
     {
         //
     }
@@ -78,10 +82,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
         //
     }
@@ -90,7 +94,7 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param User $user
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return IlluminateView|Factory
      */
     public function show(User $user)
     {
@@ -101,7 +105,7 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param User $user
-     * @return \Illuminate\Http\Response
+     * @return IlluminateView|Factory
      */
     public function edit(User $user)
     {
@@ -111,7 +115,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param Request $request
      * @param User $user
      * @return mixed
      */
@@ -161,15 +165,14 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
-    public function destroy($id)
+    public function destroy(int $id): Response
     {
         $status = $this->repository->destroy($id);
 
-        if($status)
-        {
+        if ($status) {
             return redirect()->route('admin.users')->withFlashSuccess('User Deleted Successfully!');
         }
 

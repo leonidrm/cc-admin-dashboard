@@ -2,6 +2,7 @@
 
 namespace App\Models\Auth\User\Traits\Ables;
 
+use App\Models\Auth\Role\Role;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
@@ -29,13 +30,13 @@ trait Rolable
      * @param bool $all
      * @return bool|int
      */
-    public function hasRoles($roles, $all = false)
+    public function hasRoles($roles, $all = false): bool
     {
         if ($roles instanceof Model) $roles = $roles->getKey();
 
         if ($roles instanceof Collection) $roles = $roles->modelKeys();
 
-        $roles = !is_array($roles) ? [$roles] : $roles;
+        $roles = is_array($roles) === false ? [$roles] : $roles;
 
         $hasRoles = 0;
 
@@ -43,6 +44,17 @@ trait Rolable
             if ($this->hasRole($role)) $hasRoles++;
         }
 
-        return ($all) ? ($hasRoles == count($roles)) : ($hasRoles);
+        return $all ? $hasRoles === count($roles): $hasRoles > 0;
+    }
+
+    public function hasOneRole(array $roles): bool
+    {
+        foreach ($roles as $role) {
+            if ($this->hasRole($role)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

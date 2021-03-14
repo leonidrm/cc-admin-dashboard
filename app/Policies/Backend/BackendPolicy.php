@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Policies\Backend;
 
@@ -9,7 +9,7 @@ class BackendPolicy
 {
     use HandlesAuthorization;
 
-    public function before(User $user, $ability)
+    public function before(User $user, $ability): ?bool
     {
         if ($user->hasRole('administrator')) return true;
         if (!$user->active) return false;

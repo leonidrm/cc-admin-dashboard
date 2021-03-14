@@ -1,10 +1,13 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
 use Closure;
+use Exception;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
-use NetLicensing\Context;
+use NetLicensing\Constants;
 use NetLicensing\NetLicensingService;
 use NetLicensing\RestException;
 
@@ -17,7 +20,7 @@ class Protection
      * @param Closure $next
      * @param $productModuleNumber
      * @param null $failedRouteName
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return RedirectResponse|Redirector
      */
     public function handle($request, Closure $next, $productModuleNumber, $failedRouteName)
     {
@@ -33,7 +36,7 @@ class Protection
                     'product_module_number' => $productModuleNumber,
                 ]);
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             if ($e instanceof RestException) {
 
                 $authError = false;
@@ -44,12 +47,12 @@ class Protection
                 }
 
                 switch (env('NETLICENSING_SECURITY_MODE')) {
-                    case Context::BASIC_AUTHENTICATION:
+                    case Constants::BASIC_AUTHENTICATION:
                         if (empty(env('NETLICENSING_USERNAME')) || empty('NETLICENSING_PASSWORD')) {
                             $authError = true;
                         }
                         break;
-                    case Context::APIKEY_IDENTIFICATION:
+                    case Constants::APIKEY_IDENTIFICATION:
                         if (empty(env('NETLICENSING_APIKEY'))) {
                             $authError = true;
                         }

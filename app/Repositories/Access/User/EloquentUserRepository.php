@@ -1,22 +1,17 @@
-<?php namespace App\Repositories\Access\User;
+<?php declare(strict_types=1);
 
-/**
- * Class EloquentUserRepository
- * 
- * @author Anuj Jaha <er.anujjaha@gmail.com>
- */
+namespace App\Repositories\Access\User;
 
 use App\Models\Auth\User\User;
 use App\Exceptions\GeneralException;
 use App\Repositories\DbRepository;
-use Exception;
 
 class EloquentUserRepository extends DbRepository
 {
     /**
      * Model
      *
-     * @var object
+     * @var User
      */
     protected $model;
 
@@ -32,31 +27,31 @@ class EloquentUserRepository extends DbRepository
     /**
      * Restore User
      *
-     * @param string|int $id
+     * @param int $id
      * @throws GeneralException
      * @return bool
      */
-    public function restore($id)
+    public function restore(int $id): bool
     {
         $user = $this->model->withTrashed()->where('id', $id)->first();
-        
+
         if(isset($user) && isset($user->id))
         {
             $user->restore();
             return true;
         }
-        
+
         throw new GeneralException(trans('exceptions.backend.access.users.restore_error'));
     }
 
     /**
      * Destroy User
      *
-     * @param string|int $id
+     * @param int $id
      * @throws GeneralException
      * @return bool
      */
-    public function destroy($id)
+    public function destroy(int $id): bool
     {
         // If the current user is who we're destroying, prevent this action and throw GeneralException
         if(auth()->id() == $id)

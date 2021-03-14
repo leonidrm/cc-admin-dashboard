@@ -1,28 +1,28 @@
-<?php namespace App\Repositories;
+<?php declare(strict_types=1);
+
+namespace App\Repositories;
 
 /**
  * Abstract Class DbRepository
  *
- *@author Anuj Jaha <er.anujjaha@gmail.com>
  * @package App\Repositories
  */
 
+use App\Exceptions\GeneralException;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
+use Closure;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Collection as SupportCollection;
 
 Abstract class DbRepository
 {
     /**
      * Destroy Item
      *
-     * @param string|int $id
+     * @param int $id
      * @return bool
      * @throws GeneralException
      */
-    public function destroy($id)
+    public function destroy(int $id): bool
     {
         if($this->model->where('ID', '=', $id)->delete())
         {
@@ -40,7 +40,7 @@ Abstract class DbRepository
      * @param string $sort
      * @return mixed
      */
-    public function selectAll($columns='*', $order_by = 'id', $sort = 'asc')
+    public function selectAll(string $columns='*', string $order_by = 'id', string $sort = 'asc')
     {
         return $this->model->select($columns)->orderBy($order_by, $sort)->get();
     }
@@ -51,9 +51,9 @@ Abstract class DbRepository
      * @param mixed $input
      * @param mixed $field
      * @param string $format
-     * @return bool|string
+     * @return null|string
      */
-    public function setDateTimeFormat($input = null, $field = null, $format = 'Y-m-d')
+    public function setDateTimeFormat($input = null, $field = null, string $format = 'Y-m-d'): ?string
     {
         if(isset($input[$field]))
         {
@@ -61,7 +61,7 @@ Abstract class DbRepository
             return $format ? $carbonObj->format($format) : $carbonObj->toDateTimeString();
         }
 
-        return false;
+        return null;
     }
 
     /**
@@ -71,13 +71,20 @@ Abstract class DbRepository
      * @param integer $limit
      * @param array $where
      * @param array $relations
-     * @param null|array $orderBy
+     * @param string|null $orderBy
      * @param string $direction
-     * @param \Closure|null $callback
+     * @param Closure|null $callback
      * @return mixed
      */
-    public function getRecordsByLimit($offset, $limit, $where = array(), $relations = array(), $orderBy = null, $direction = 'asc', $callback = null)
-    {
+    public function getRecordsByLimit(
+        int $offset,
+        int $limit,
+        array $where = array(),
+        array $relations = array(),
+        ?string $orderBy = null,
+        string $direction = 'asc',
+        ?Closure $callback = null
+    ) {
         $query = $this->model->query();
 
         if($relations && !empty($relations))
@@ -90,7 +97,7 @@ Abstract class DbRepository
             $query = $query->where($where);
         }
 
-        if($callback && $callback instanceof \Closure)
+        if($callback && $callback instanceof Closure)
         {
             $callback($query);
         }
@@ -111,7 +118,7 @@ Abstract class DbRepository
      * @param int|string $order
      * @return array
      */
-    public function arraySort($array = array(), $on = '', $order = SORT_ASC)
+    public function arraySort(array $array = array(), string $on = '', $order = SORT_ASC): array
     {
         $new_array      = [];
         $sortable_array = [];
@@ -161,7 +168,6 @@ Abstract class DbRepository
     /**
      * Check Record Is Soft Deleted Or Not
      *
-     * @return mixed
      * @throws GeneralException
      */
     public function checkRecordIsSoftDeleteOrNot()

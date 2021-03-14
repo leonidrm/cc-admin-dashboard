@@ -1,10 +1,15 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -41,8 +46,8 @@ class LoginController extends Controller
     /**
      * Log the user out of the application.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return  Redirector|RedirectResponse
      */
     public function logout(Request $request)
     {
@@ -52,7 +57,7 @@ class LoginController extends Controller
          * Remove the socialite session variable if exists
          */
 
-        \Session::forget(config('access.socialite_session_name'));
+        Session::forget(config('access.socialite_session_name'));
 
         $request->session()->flush();
 
@@ -64,8 +69,8 @@ class LoginController extends Controller
     /**
      * Get the failed login response instance.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @return JsonResponse|RedirectResponse
      */
     protected function sendFailedLoginResponse(Request $request)
     {
@@ -83,7 +88,7 @@ class LoginController extends Controller
     /**
      * The user has been authenticated.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param Request $request
      * @param  mixed $user
      * @return mixed
      */

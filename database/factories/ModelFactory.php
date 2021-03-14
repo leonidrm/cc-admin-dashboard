@@ -1,5 +1,9 @@
 <?php
 
+namespace Database\Factories;
+
+use Faker;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories

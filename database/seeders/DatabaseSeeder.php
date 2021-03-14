@@ -1,11 +1,16 @@
-<?php
+<?php declare(strict_types=1);
 
+namespace Database\Seeders;
+
+use Database\Seeders\Auth\RolesSeeder;
+use Database\Seeders\Auth\UsersRolesSeeder;
+use Database\Seeders\Auth\UsersSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database seeders.
      *
      * @return void
      */

@@ -1,9 +1,15 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
 use App\Models\Auth\User\User;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 
 class MembershipController extends Controller
 {
@@ -12,6 +18,10 @@ class MembershipController extends Controller
         $this->middleware('admin', ['except' => ['index', 'failed', 'clearValidationCache']]);
     }
 
+    /**
+     * @param Request $request
+     * @return Application|Factory|View
+     */
     public function index(Request $request)
     {
         /** @var  $user User */
@@ -40,6 +50,10 @@ class MembershipController extends Controller
         return view('membership')->with($membership->toArray());
     }
 
+    /**
+     * @param Request $request
+     * @return Application|Factory|View|RedirectResponse|Redirector
+     */
     public function failed(Request $request)
     {
         /** @var  $user User */
@@ -68,6 +82,11 @@ class MembershipController extends Controller
         return view('membership')->with($membership->toArray());
     }
 
+    /**
+     * @param Request $request
+     * @return Application|RedirectResponse|Redirector
+     * @throws Exception
+     */
     public function clearValidationCache(Request $request)
     {
         /** @var  $user User */

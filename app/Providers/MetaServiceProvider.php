@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Providers;
 
@@ -13,7 +13,7 @@ class MetaServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         /*
        * The block of code inside this directive indicates
@@ -29,7 +29,7 @@ class MetaServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->singleton('meta', function () {
             return new Meta();
@@ -46,7 +46,7 @@ class MetaServiceProvider extends ServiceProvider
      * Set default meta
      *
      */
-    protected function setDefaultMeta()
+    protected function setDefaultMeta(): void
     {
         /** @var  $meta Meta */
         $meta = app('meta');

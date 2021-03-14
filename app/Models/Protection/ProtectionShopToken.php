@@ -1,10 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Models\Protection;
 
 use App\Models\Auth\User\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\Protection\ProtectionShopToken
@@ -60,12 +61,12 @@ class ProtectionShopToken extends Model
      */
     protected $dates = ['expires'];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function isExpired()
+    public function isExpired(): bool
     {
         return $this->expires <= Carbon::now();
     }

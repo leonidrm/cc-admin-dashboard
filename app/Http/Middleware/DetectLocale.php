@@ -1,8 +1,13 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
+use Illuminate\Config\Repository;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
 use Closure;
+use Illuminate\Http\Request;
 
 class DetectLocale
 {
@@ -12,6 +17,7 @@ class DetectLocale
      * @var mixed
      */
     protected $cookie;
+
     /**
      * Allowed locales list.
      *
@@ -32,11 +38,11 @@ class DetectLocale
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
+     * @param  Request $request
+     * @param Closure $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         $locale = session('session.locale');
 
@@ -46,7 +52,7 @@ class DetectLocale
 
         to_js(['locale' => $locale]);
 
-        \App::setLocale($locale);
+        App::setLocale($locale);
 
         return $next($request);
     }
@@ -57,7 +63,7 @@ class DetectLocale
      * @param $locale
      * @return bool
      */
-    public function check($locale)
+    public function check($locale): bool
     {
         if (!$locale) return false;
 
@@ -68,10 +74,10 @@ class DetectLocale
     /**
      * Get languages from "HTTP_ACCEPT_LANGUAGE"
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Support\Collection
+     * @param Request $request
+     * @return Repository|Application|mixed|string
      */
-    protected function detectLocale($request)
+    protected function detectLocale(Request $request)
     {
         preg_match_all('/([[:alpha:]]{1,8})(-([[:alpha:]|-]{1,8}))?(\s*;\s*q\s*=\s*(1\.0{0,3}|0\.\d{0,3}))?\s*(,|$)/i', $request->server('HTTP_ACCEPT_LANGUAGE'), $languages, PREG_SET_ORDER);
 

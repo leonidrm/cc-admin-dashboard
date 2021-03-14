@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Providers;
 
@@ -13,7 +13,7 @@ class ProtectionProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         Blade::directive('protection', function ($productModuleNumber) {
             return "<?php if(auth()->check() && auth()->user()->hasAccess('$productModuleNumber')): ?>";
@@ -37,7 +37,7 @@ class ProtectionProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->bind('netlicensing', NetLicensing::class);
     }

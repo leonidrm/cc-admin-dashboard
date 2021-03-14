@@ -1,14 +1,25 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * Global helpers file with misc functions.
  */
 
+use App\Models\Auth\User\User;
+use App\Models\Protection\ProtectionShopToken;
+use App\Models\Protection\ProtectionValidation;
+use Creativeorange\Gravatar\Gravatar;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
+use NetLicensing\Constants;
+use NetLicensing\Context;
+use Illuminate\Support\Facades\Auth;
+
 if (!function_exists('gravatar')) {
     /**
      * Access the gravatar helper.
      *
-     * @return \Creativeorange\Gravatar\Gravatar|\Illuminate\Foundation\Application|mixed
+     * @return Gravatar|Application|mixed
      */
     function gravatar()
     {
@@ -66,7 +77,7 @@ if (!function_exists('meta_property')) {
 
 if (!function_exists('protection_context')) {
     /**
-     * @return \NetLicensing\Context
+     * @return Context
      */
     function protection_context()
     {
@@ -76,36 +87,33 @@ if (!function_exists('protection_context')) {
 
 if (!function_exists('protection_context_basic_auth')) {
     /**
-     * @return \NetLicensing\Context
+     * @return Context
      */
     function protection_context_basic_auth()
     {
-        return app('netlicensing')->context(\NetLicensing\Context::BASIC_AUTHENTICATION);
+        return app('netlicensing')->context(Constants::BASIC_AUTHENTICATION);
     }
 }
 
 if (!function_exists('protection_context_api_key')) {
     /**
-     * @return \NetLicensing\Context
+     * @return Context
      */
     function protection_context_api_key()
     {
-        return app('netlicensing')->context(\NetLicensing\Context::APIKEY_IDENTIFICATION);
+        return app('netlicensing')->context(Constants::APIKEY_IDENTIFICATION);
     }
 }
 
 if (!function_exists('protection_shop_token')) {
 
-    /**
-     * @param \App\Models\Auth\User\User $user
-     * @param null $successUrl
-     * @param null $cancelUrl
-     * @param null $successUrlTitle
-     * @param null $cancelUrlTitle
-     * @return \App\Models\Protection\ProtectionShopToken
-     */
-    function protection_shop_token(\App\Models\Auth\User\User $user, $successUrl = null, $cancelUrl = null, $successUrlTitle = null, $cancelUrlTitle = null)
-    {
+    function protection_shop_token(
+        User $user,
+        ?string $successUrl = null,
+        ?string $cancelUrl = null,
+        ?string $successUrlTitle = null,
+        ?string $cancelUrlTitle = null
+    ): ProtectionShopToken {
         return app('netlicensing')->createShopToken($user, $successUrl, $cancelUrl, $successUrlTitle, $cancelUrlTitle);
     }
 }
@@ -113,10 +121,10 @@ if (!function_exists('protection_shop_token')) {
 if (!function_exists('protection_validate')) {
 
     /**
-     * @param \App\Models\Auth\User\User $user
-     * @return \App\Models\Protection\ProtectionValidation
+     * @param User $user
+     * @return ProtectionValidation
      */
-    function protection_validate(\App\Models\Auth\User\User $user)
+    function protection_validate(User $user): ProtectionValidation
     {
         return app('netlicensing')->validate($user);
     }
@@ -132,7 +140,7 @@ if (!function_exists('__trans_choice')) {
      * @param null $locale
      * @return string
      */
-    function __trans_choice($key, $number, array $replace = [], $locale = null)
+    function __trans_choice($key, $number, array $replace = [], $locale = null): string
     {
         return trans_choice(__($key), $number, $replace, $locale);
     }
@@ -145,9 +153,9 @@ if(!function_exists('isAdmin'))
      *
      * @return bool
      */
-    function isAdmin($default = '/')
+    function isAdmin(string $default = '/'): bool
     {
-        $user = \Auth::user();
+        $user = Auth::user();
 
         return $user->hasRole('administrator');
     }
@@ -159,15 +167,15 @@ if(!function_exists('redirectToDashboad'))
      * Redirect To Dashboard
      *
      * @param string $default
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return RedirectResponse|Redirector
      */
-    function redirectToDashboad($default = '/')
+    function redirectToDashboad(string $default = '/')
     {
         if(isAdmin())
         {
-            return redirect('/admin');    
+            return redirect('/admin');
         }
-        
+
         return redirect($default);
     }
 }

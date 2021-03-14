@@ -1,9 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Models\Auth\User\Traits\Relations;
 
 use App\Models\Auth\Role\Role;
-use App\Models\Auth\User\SocialAccount;
 use App\Models\Protection\ProtectionShopToken;
 use App\Models\Protection\ProtectionValidation;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -16,19 +15,9 @@ trait UserRelations
      *
      * @return BelongsToMany
      */
-    public function roles()
+    public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'users_roles', 'user_id', 'role_id');
-    }
-
-    /**
-     * Relation with social provider
-     *
-     * @return HasMany
-     */
-    public function providers()
-    {
-        return $this->hasMany(SocialAccount::class);
     }
 
     /**

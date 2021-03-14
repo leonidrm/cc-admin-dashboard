@@ -1,8 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Database\traits;
 
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB
 
 /**
  * Class TruncateTable.
@@ -12,9 +12,9 @@ trait TruncateTable
     /**
      * @param $table
      *
-     * @return bool
+     * @return mixed
      */
-    protected function truncate($table)
+    protected function truncate(string $table)
     {
         switch (DB::getDriverName()) {
             case 'mysql':
@@ -33,7 +33,7 @@ trait TruncateTable
     /**
      * @param array $tables
      */
-    protected function truncateMultiple(array $tables)
+    protected function truncateMultiple(array $tables): void
     {
         foreach ($tables as $table) {
             $this->truncate($table);

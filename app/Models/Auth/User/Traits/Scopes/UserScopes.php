@@ -1,19 +1,20 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Models\Auth\User\Traits\Scopes;
 
-use Arcanedev\Support\Bases\Model;
+use App\Models\Auth\Role\Role;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 trait UserScopes
 {
     /**
      * Fetch users by a given role id or role name value.
-     *
-     * @param $query \Illuminate\Database\Eloquent\Builder
-     * @param $role
-     * @return mixed
+     * @param Builder $query
+     * @param Role $role
+     * @return Builder
      */
-    public function scopeWhereRole($query, $role)
+    public function scopeWhereRole(Builder $query, Role $role): Builder
     {
         if ($role instanceof Model) $role = $role->getKey();
 

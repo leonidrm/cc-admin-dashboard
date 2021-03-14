@@ -1,10 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
 use App\Models\Auth\User\User;
 use App\Notifications\Auth\ConfirmEmail;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use Ramsey\Uuid\Uuid;
 
 class ConfirmController extends Controller
@@ -23,7 +24,7 @@ class ConfirmController extends Controller
      * Confirm user email
      *
      * @param User $user
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function confirm(User $user)
     {

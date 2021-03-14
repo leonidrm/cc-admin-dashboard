@@ -1,10 +1,14 @@
-<?php
-namespace App\Models\Auth\User\Traits\Ables;
+<?php declare(strict_types=1);
 
+namespace App\Models\Auth\User\Traits\Ables;
 
 trait Protectable
 {
-    public function hasAccess($productModuleNumber)
+    /**
+     * @param $productModuleNumber
+     * @return bool
+     */
+    public function hasAccess($productModuleNumber): bool
     {
         //skip if user has except roles
         $exceptRoles = config('protection.except_roles');

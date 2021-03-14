@@ -1,10 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Models\Protection;
 
 use App\Models\Auth\User\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\Protection\ProtectionValidation
@@ -59,12 +60,12 @@ class ProtectionValidation extends Model
     protected $dates = ['ttl'];
 
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function isValid($productModuleNumber)
+    public function isValid(string $productModuleNumber): bool
     {
         return collect($this->validation_result)
             ->where('productModuleNumber', $productModuleNumber)
@@ -72,12 +73,12 @@ class ProtectionValidation extends Model
             ->isNotEmpty();
     }
 
-    public function isExpired()
+    public function isExpired(): bool
     {
         return $this->ttl <= Carbon::now();
     }
 
-    public function getValidationResult($productModuleNumber)
+    public function getValidationResult(string $productModuleNumber)
     {
         return collect($this->validation_result)
             ->where('productModuleNumber', $productModuleNumber)
