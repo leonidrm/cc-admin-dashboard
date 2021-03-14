@@ -1,6 +1,4 @@
-# Laravel Boilerplate Project
-
-_Laravel Boilerplate_ provides a very flexible and extensible way of building your custom Laravel applications.
+# Code Crew Dashboard
 
 ## Table of Contents
 
@@ -20,7 +18,6 @@ _Laravel Boilerplate_ provides a very flexible and extensible way of building yo
 - Responsive Layout
 - Bootstrap 3
 - Font Awesome
-- Socialite Integration
 - [Invisible reCAPTCHA](https://github.com/albertcht/invisible-recaptcha)
 - **Membership plans and Access control management** by [NetLicensing](https://netlicensing.io/?utm_source=Laravel_Boilerplate&utm_medium=github&utm_campaign=laravel_boilerplate&utm_content=readme) :thumbsup:
 - MySQL, SQLite, PostgreSQL databases support
@@ -43,10 +40,7 @@ _Laravel Boilerplate_ provides a very flexible and extensible way of building yo
 - Added library log viewer to allow printing errors in a log file ```laravel.log```
 - Added library sortable for tables sorting
 - i18n: ```trans()``` method replaced by ```__()``` in order to support internationalization via JSON resources
-- Registration using social services (Google+, Facebook, Twitter)
-- Storing last social login in user session
-- Added event on SocialLogin
-- Added listeners on some events; e.g. Login, Logout, Registration, SocialLogin
+- Added listeners on some events; e.g. Login, Logout, Registration
 - Added notification ```ConfirmEmail``` on user account confirmation
 - Added policies to access backend services
 - Added database seeders for Users, Roles, and UserRoles
