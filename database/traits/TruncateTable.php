@@ -2,7 +2,7 @@
 
 namespace Database\traits;
 
-use Illuminate\Support\Facades\DB
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class TruncateTable.

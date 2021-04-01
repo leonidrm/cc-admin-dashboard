@@ -10,7 +10,7 @@ class Newsletter extends Model
 {
     use HasFactory;
 
-    public function Campaign(): BelongsTo
+    public function campaign(): BelongsTo
     {
         return $this->belongsTo(Campaign::class);
     }

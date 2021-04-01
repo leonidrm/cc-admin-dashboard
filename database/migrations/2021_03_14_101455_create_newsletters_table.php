@@ -15,6 +15,7 @@ class CreateNewslettersTable extends Migration
     {
         Schema::create('newsletters', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('campaign_id');
             $table->string('subject');
             $table->string('variant');
             $table->json('tags');
@@ -37,9 +38,8 @@ class CreateNewslettersTable extends Migration
             $table->integer('successful_deliveries');
             $table->integer('bounces');
             $table->float('bounce_rate');
-            $table->string('campaign_id');
             $table->string('campaign_channel');
-            $table->boolean('winning');
+            $table->tinyInteger('winning')->default(1)->unsigned();
             $table->timestamps();
         });
     }

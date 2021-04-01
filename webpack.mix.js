@@ -20,14 +20,11 @@ const mix = require('laravel-mix');
 
 mix.scripts([
     'node_modules/jquery/dist/jquery.js',
-    'node_modules/pace-progress/pace.js',
-    'resources/assets/js/app.js',
 
 ], 'public/assets/app/js/app.js').version();
 
 mix.styles([
     'node_modules/font-awesome/css/font-awesome.css',
-    'node_modules/pace-progress/themes/blue/pace-theme-minimal.css',
 
 ], 'public/assets/app/css/app.css').version();
 
@@ -65,6 +62,8 @@ mix.scripts([
     'node_modules/gentelella/build/js/custom.js',
     'node_modules/guidechimp/dist/guidechimp.min.js',
     'node_modules/guidechimp/dist/plugins/multiPage.js',
+    'node_modules/select2/dist/js/select2.full.js',
+    'node_modules/bootstrap4-toggle/js/bootstrap4-toggle.min.js',
     'resources/assets/admin/js/admin.js',
 ], 'public/assets/admin/js/admin.js').version();
 
@@ -73,23 +72,26 @@ mix.styles([
     'node_modules/gentelella/vendors/animate.css/animate.css',
     'node_modules/gentelella/build/css/custom.css',
     'node_modules/guidechimp/dist/guidechimp.min.css',
+    'node_modules/select2/dist/css/select2.css',
+    'node_modules/bootstrap4-toggle/css/bootstrap4-toggle.min.css',
     'resources/assets/admin/css/admin.css',
 ], 'public/assets/admin/css/admin.css').version();
-
 
 mix.copy([
     'node_modules/gentelella/vendors/bootstrap/dist/fonts',
 ], 'public/assets/admin/fonts');
 
+mix.scripts([
+    'resources/assets/admin/js/users/users.js',
+], 'public/assets/admin/js/users/users.js').version();
 
 mix.scripts([
-    'node_modules/select2/dist/js/select2.full.js',
-    'resources/assets/admin/js/users/edit.js',
-], 'public/assets/admin/js/users/edit.js').version();
+    'resources/assets/admin/js/companies/companies.js',
+], 'public/assets/admin/js/companies.js').version();
 
-mix.styles([
-    'node_modules/select2/dist/css/select2.css',
-], 'public/assets/admin/css/users/edit.css').version();
+mix.scripts([
+    'resources/assets/admin/js/industries/industries.js',
+], 'public/assets/admin/js/industries.js').version();
 
 mix.scripts([
     'node_modules/gentelella/vendors/Flot/jquery.flot.js',
@@ -105,7 +107,6 @@ mix.scripts([
 
     'node_modules/gentelella/production/js/moment/moment.min.js',
     'node_modules/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js',
-
 
     'node_modules/gentelella/vendors/Chart.js/dist/Chart.js',
     'node_modules/jcarousel/dist/jquery.jcarousel.min.js',

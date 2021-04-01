@@ -28,6 +28,12 @@ class Role extends Model
     use RoleScopes,
         RoleRelations;
 
+    public const ADMIN_ID = 1;
+
+    public const EDITOR_ID = 2;
+
+    public const CLIENT_ID = 3;
+
     /**
      * The database table used by the model.
      *

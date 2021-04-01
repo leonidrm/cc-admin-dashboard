@@ -4,6 +4,8 @@ namespace App\Models\Auth\User;
 
 use App\Models\Auth\User\Traits\Ables\Protectable;
 use App\Models\Auth\User\Traits\Attributes\UserAttributes;
+use App\Models\Company;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -23,6 +25,7 @@ use Kyslik\ColumnSortable\Sortable;
  * @property string $confirmation_code
  * @property bool $confirmed
  * @property string $remember_token
+ * @property int $company_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property \Carbon\Carbon $deleted_at
@@ -73,7 +76,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'active', 'confirmation_code', 'confirmed'];
+    protected $fillable = ['name', 'email', 'company', 'password', 'active', 'confirmation_code', 'confirmed'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -88,4 +91,19 @@ class User extends Authenticatable
      * @var array
      */
     protected $dates = ['deleted_at', 'last_login'];
+
+    public function company(): BelongsTo
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    public function team(): array
+    {
+        return $this->roles->where('name', '!=', 'client');
+    }
+
+    public function clients(): array
+    {
+        return $this->roles->where('name', '=', 'client');
+    }
 }

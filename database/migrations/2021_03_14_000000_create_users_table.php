@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->unsignedBigInteger('company_id')->nullable();
+            $table->unsignedBigInteger('company_id')->nullable()->unsigned();
             $table->tinyInteger('active')->default(1)->unsigned();
             $table->uuid('confirmation_code')->nullable();
             $table->boolean('confirmed')->default(config('access.users.confirm_email') ? false : true);
@@ -26,6 +26,9 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('company_id')
+                  ->references('id')
+                  ->on('companies');
         });
     }
 

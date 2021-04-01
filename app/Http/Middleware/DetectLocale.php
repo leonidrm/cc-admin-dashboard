@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Closure;
 use Illuminate\Http\Request;

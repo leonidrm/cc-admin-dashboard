@@ -6,7 +6,6 @@ use App\Models\Auth\Role\Role;
 use App\Models\Protection\ProtectionShopToken;
 use App\Models\Protection\ProtectionValidation;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait UserRelations
 {
