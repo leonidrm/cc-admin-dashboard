@@ -82,16 +82,20 @@ mix.copy([
 ], 'public/assets/admin/fonts');
 
 mix.scripts([
-    'resources/assets/admin/js/users/users.js',
-], 'public/assets/admin/js/users/users.js').version();
+    'resources/assets/admin/js/users.js',
+], 'public/assets/admin/js/users.js').version();
 
 mix.scripts([
-    'resources/assets/admin/js/companies/companies.js',
+    'resources/assets/admin/js/companies.js',
 ], 'public/assets/admin/js/companies.js').version();
 
 mix.scripts([
-    'resources/assets/admin/js/industries/industries.js',
+    'resources/assets/admin/js/industries.js',
 ], 'public/assets/admin/js/industries.js').version();
+
+mix.scripts([
+    'resources/assets/admin/js/campaign.js',
+], 'public/assets/admin/js/campaign.js').version();
 
 mix.scripts([
     'node_modules/gentelella/vendors/Flot/jquery.flot.js',

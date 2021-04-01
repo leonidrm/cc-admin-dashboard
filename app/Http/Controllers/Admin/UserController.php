@@ -81,7 +81,7 @@ class UserController extends Controller
      * @param int $id
      * @return Response
      */
-    public function restoreUser(int $id): Response
+    public function restoreUser(int $id)
     {
         $status = $this->repository->restore($id);
 

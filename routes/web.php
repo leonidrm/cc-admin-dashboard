@@ -86,6 +86,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('companies/{company}', 'CompanyController@show')->name('companies.show');
     Route::get('companies/{company}/edit', 'CompanyController@edit')->name('companies.edit');
     Route::put('companies/{company}', 'CompanyController@update')->name('companies.update');
+
+    //CSV Uploads
+    Route::get('campaign/upload', 'CampaignController@upload')->name('campaign.upload');
+    Route::post('campaign/parse', 'CampaignController@parseCsv')->name('campaign.parse');
 });
 
 Route::group(['prefix' => 'member', 'as' => 'member.', 'namespace' => 'Member', 'middleware' => 'member'], function () {

@@ -25,8 +25,14 @@
                 <ul class="nav side-menu">
                     <li>
                         <a href="{{ route('admin.dashboard') }}">
-                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <i class="fa fa-line-chart" aria-hidden="true"></i>
                             {{ __('views.backend.section.navigation.menu_0_1') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.campaign.upload') }}">
+                            <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                            {{ __('views.backend.section.navigation.campaign-upload') }}
                         </a>
                     </li>
                 </ul>
@@ -36,19 +42,19 @@
                 <ul class="nav side-menu">
                     <li>
                         <a href="{{ route('admin.industries') }}">
-                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <i class="fa fa-area-chart" aria-hidden="true"></i>
                             {{ __('views.backend.section.navigation.industries') }}
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('admin.companies') }}">
-                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <i class="fa fa-building-o" aria-hidden="true"></i>
                             {{ __('views.backend.section.navigation.companies') }}
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('admin.clients') }}">
-                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <i class="fa fa-briefcase" aria-hidden="true"></i>
                             {{ __('views.backend.section.navigation.clients') }}
                         </a>
                     </li>
@@ -60,7 +66,7 @@
                     </li>
                     <li>
                         <a href="{{ route('admin.users.restore') }}">
-                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <i class="fa fa-refresh" aria-hidden="true"></i>
                             {{ __('views.backend.section.navigation.menu_1_3') }}
                         </a>
                     </li>
