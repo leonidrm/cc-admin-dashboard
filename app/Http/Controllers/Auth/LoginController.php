@@ -31,7 +31,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -114,6 +114,10 @@ class LoginController extends Controller
 
         $user->last_login = now();
         $user->save();
+
+        if($user->hasRole('client')) {
+            return redirect('/member');
+        }
 
         return redirect()->intended($this->redirectPath());
     }

@@ -118,3 +118,61 @@ mix.styles([
     'node_modules/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css',
     'resources/assets/admin/css/dashboard.css',
 ], 'public/assets/admin/css/dashboard.css').version();
+
+/*
+ |--------------------------------------------------------------------------
+ | Member
+ |--------------------------------------------------------------------------
+ |
+ */
+
+mix.scripts([
+    'node_modules/bootstrap/dist/js/bootstrap.js',
+    'node_modules/gentelella/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js',
+    'node_modules/gentelella/build/js/custom.js',
+    'node_modules/guidechimp/dist/guidechimp.min.js',
+    'node_modules/guidechimp/dist/plugins/multiPage.js',
+    'node_modules/select2/dist/js/select2.full.js',
+    'node_modules/bootstrap4-toggle/js/bootstrap4-toggle.min.js',
+    'resources/assets/member/js/member.js',
+], 'public/assets/member/js/member.js').version();
+
+mix.styles([
+    'node_modules/bootstrap/dist/css/bootstrap.css',
+    'node_modules/gentelella/vendors/animate.css/animate.css',
+    'node_modules/gentelella/build/css/custom.css',
+    'node_modules/guidechimp/dist/guidechimp.min.css',
+    'node_modules/select2/dist/css/select2.css',
+    'node_modules/bootstrap4-toggle/css/bootstrap4-toggle.min.css',
+    'resources/assets/member/css/member.css',
+], 'public/assets/member/css/member.css').version();
+
+mix.copy([
+    'node_modules/gentelella/vendors/bootstrap/dist/fonts',
+], 'public/assets/member/fonts');
+
+mix.scripts([
+    'node_modules/gentelella/vendors/Flot/jquery.flot.js',
+    'node_modules/gentelella/vendors/Flot/jquery.flot.time.js',
+    'node_modules/gentelella/vendors/Flot/jquery.flot.pie.js',
+    'node_modules/gentelella/vendors/Flot/jquery.flot.stack.js',
+    'node_modules/gentelella/vendors/Flot/jquery.flot.resize.js',
+
+    'node_modules/gentelella/vendors/flot.orderbars/js/jquery.flot.orderBars.js',
+    'node_modules/gentelella/vendors/DateJS/build/date.js',
+    'node_modules/gentelella/vendors/flot.curvedlines/curvedLines.js',
+    'node_modules/gentelella/vendors/flot-spline/js/jquery.flot.spline.min.js',
+
+    'node_modules/gentelella/production/js/moment/moment.min.js',
+    'node_modules/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js',
+
+    'node_modules/gentelella/vendors/Chart.js/dist/Chart.js',
+    'node_modules/jcarousel/dist/jquery.jcarousel.min.js',
+
+    'resources/assets/member/js/dashboard.js',
+], 'public/assets/member/js/dashboard.js').version();
+
+mix.styles([
+    'node_modules/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css',
+    'resources/assets/member/css/dashboard.css',
+], 'public/assets/member/css/dashboard.css').version();

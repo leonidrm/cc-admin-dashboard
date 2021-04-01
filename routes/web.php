@@ -24,12 +24,6 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::post('login', 'LoginController@login');
     Route::get('logout', 'LoginController@logout')->name('logout');
 
-    // Registration Routes...
-    if (config('auth.users.registration')) {
-        Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
-        Route::post('register', 'RegisterController@register');
-    }
-
     // Password Reset Routes...
     Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
     Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
@@ -92,6 +86,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('companies/{company}', 'CompanyController@show')->name('companies.show');
     Route::get('companies/{company}/edit', 'CompanyController@edit')->name('companies.edit');
     Route::put('companies/{company}', 'CompanyController@update')->name('companies.update');
+});
+
+Route::group(['prefix' => 'member', 'as' => 'member.', 'namespace' => 'Member', 'middleware' => 'member'], function () {
+
+    // Member Dashboard
+    Route::get('/', 'DashboardController@index')->name('dashboard');
+
 });
 
 Route::get('/', 'HomeController@index');

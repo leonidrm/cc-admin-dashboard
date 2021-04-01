@@ -2,7 +2,6 @@
 
 namespace App\Models\Auth\User;
 
-use App\Models\Auth\User\Traits\Ables\Protectable;
 use App\Models\Auth\User\Traits\Attributes\UserAttributes;
 use App\Models\Company;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -34,8 +33,6 @@ use Kyslik\ColumnSortable\Sortable;
  * @property-read mixed $licensee_name
  * @property-read mixed $licensee_number
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Protection\ProtectionShopToken[] $protectionShopTokens
- * @property-read \App\Models\Protection\ProtectionValidation $protectionValidation
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Auth\Role\Role[] $roles
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Auth\User\User sortable($defaultSortParameters = null)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Auth\User\User whereActive($value)
@@ -59,8 +56,7 @@ class User extends Authenticatable
         UserRelations,
         Notifiable,
         SoftDeletes,
-        Sortable,
-        Protectable;
+        Sortable;
 
     public $sortable = ['name', 'email', 'created_at', 'updated_at'];
 

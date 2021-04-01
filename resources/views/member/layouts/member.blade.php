@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('body_class','nav-md')
-@include('admin.layouts.flash-messages')
+@include('member.layouts.flash-messages')
 @section('page')
     <div class="container body">
         <div class="main_container">
             @section('header')
-                @include('admin.sections.navigation')
-                @include('admin.sections.header')
+                @include('member.sections.navigation')
+                @include('member.sections.header')
             @show
 
             @yield('left-sidebar')
@@ -29,16 +29,16 @@
             </div>
 
             <footer>
-                @include('admin.sections.footer')
+                @include('member.sections.footer')
             </footer>
         </div>
     </div>
 @stop
 
 @section('styles')
-    {{ Html::style(mix('assets/admin/css/admin.css')) }}
+    {{ Html::style(mix('assets/member/css/member.css')) }}
 @endsection
 
 @section('scripts')
-    {{ Html::script(mix('assets/admin/js/admin.js')) }}
+    {{ Html::script(mix('assets/member/js/member.js')) }}
 @endsection

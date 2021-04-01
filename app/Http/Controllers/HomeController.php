@@ -6,6 +6,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -26,6 +27,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        if(Auth::guest()) {
+            return view('welcome');
+        }
+
+        $user = Auth::user();
+
+        if($user->hasRole('client')) {
+            return redirect('/member');
+        }
+
+        return redirect('/admin');
     }
 }

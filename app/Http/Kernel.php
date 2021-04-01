@@ -42,6 +42,11 @@ class Kernel extends HttpKernel
             'authorize:view,backend'
         ],
 
+        'member' => [
+            'auth',
+            'authorize:view,member'
+        ],
+
         'api' => [
             'throttle:60,1',
             'bindings',
@@ -63,7 +68,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'authorize' => \App\Http\Middleware\Authorize::class,
-        'protection' => \App\Http\Middleware\Protection::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
 }

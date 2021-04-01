@@ -84,14 +84,14 @@
                 <div class="top-right links">
 
                     @if (Route::has('login'))
-                        @if (!Auth::check())
-                            @if(config('auth.users.registration'))
-                                <a href="{{ url('/register') }}">{{ __('views.welcome.register') }}</a>
-                            @endif
+                        @if (Auth::check() === false)
                             <a href="{{ url('/login') }}">{{ __('views.welcome.login') }}</a>
                         @else
-                            @if(auth()->user()->hasOneRole(['administrator', 'editor', 'client']))
+                            @if(auth()->user()->hasOneRole(['administrator', 'editor']))
                                 <a href="{{ url('/admin') }}">{{ __('views.welcome.admin') }}</a>
+                            @endif
+                            @if(auth()->user()->hasRole('client'))
+                                <a href="{{ url('/member') }}">{{ __('views.welcome.member') }}</a>
                             @endif
                             <a href="{{ url('/logout') }}">{{ __('views.welcome.logout') }}</a>
                         @endif
