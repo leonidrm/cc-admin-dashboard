@@ -22,10 +22,19 @@ phpunit.phar
 
 public/assets
 public/mix-manifest.json
+/public/hot
+/public/storage
 
 .env
 .env.*.php
 .env.php
+.env.backup
+.phpunit.result.cache
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
 .sass-cache
 
 # IDE exclusions

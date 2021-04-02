@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,8 +16,6 @@
 /**
  * Auth routes
  */
-
-use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Auth'], function () {
 

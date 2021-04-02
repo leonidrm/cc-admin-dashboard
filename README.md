@@ -55,7 +55,7 @@
 **[Gentelella Admin Theme Demo](https://colorlib.com/polygon/gentelella/index.html)**
 
 ## System Requirements
-To be able to run Laravel Boilerplate you have to meet the following requirements:
+To be able to run CC Admin Dashboard you have to meet the following requirements:
 - PHP >= 7.4
 - PHP Extensions: BCMath, Ctype, Fileinfo, JSON, Mbstring, OpenSSL, PDO, Tokenizer, XML, cURL, Mcrypt, GD
 - Node.js >= 8.x
@@ -74,11 +74,11 @@ $ yum install npm
 ```
 3. Clone repository
 ```
-$ git clone https://github.com/Labs64/laravel-boilerplate.git
+$ git clone https://github.com/andreimarin90/cc-admin-dashboard.git
 ```
 4. Change into the working directory
 ```
-$ cd laravel-boilerplate
+$ cd cc-admin-dashboard
 ```
 5. Copy `.env.example` to `.env` and modify according to your environment
 ```
@@ -127,13 +127,13 @@ Now you can browse the site at [http://localhost:8080](http://localhost:8080)  ð
 Here is a Docker based local development environment prepared, which provides a very flexible and extensible way of building your custom Laravel applications.
 
 ### What's Inside
-This project is based on [docker-compose](https://docs.docker.com/compose/). By default, the following containers are started: _laravel-env (centos:7 based), mysql, nginx_. Additional containers (_phpmyadmin, mailhog_) are externalized into `docker-compose.utils.yml`. The `/var/www/laravel-boilerplate` directory is the web root which is mapped to the nginx container.
+This project is based on [docker-compose](https://docs.docker.com/compose/). By default, the following containers are started: _laravel-env (centos:7 based), mysql, nginx_. Additional containers (_phpmyadmin, mailhog_) are externalized into `docker-compose.utils.yml`. The `/var/www/cc-admin-dashboard` directory is the web root which is mapped to the nginx container.
 You can directly edit configuration files from within the repo as they are mapped to the correct locations in containers.
 
 <p align="center"><img src="https://raw.githubusercontent.com/Labs64/laravel-boilerplate/master/dockerfiles/img/laravel-boilerplate-docker.png" alt="Laravel Boilerplate Docker"></p>
 
 ### System Requirements
-To be able to run Laravel Boilerplate you have to meet the following requirements:
+To be able to run CC Admin Dashboard you have to meet the following requirements:
 * [docker](https://www.docker.com)
 * [docker-compose](https://docs.docker.com/compose/)
 
@@ -141,7 +141,7 @@ To be able to run Laravel Boilerplate you have to meet the following requirement
 
 1. Clone repository
 ```
-$ git clone https://github.com/Labs64/laravel-boilerplate.git
+$ git clone https://github.com/andreimarin90/cc-admin-dashboard.git
 ```
 
 2. Copy `.env.example` to `.env` and modify according to your environment (make sure database host set to `DB_HOST=mysql`)

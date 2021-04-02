@@ -41,7 +41,7 @@
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     @if($company->logo)
-                        <img class="image rounded-circle" src="{{asset('/storage/images/companies/' . $company->logo)}}"
+                        <img class="image rounded-circle" src="{{storage_path() . '/images/companies/' . $company->logo}}"
                              alt="company_logo" style="width: 80px;height: 80px; padding: 10px; margin: 0;">
                     @endif
                     <input id="logo" type="file"

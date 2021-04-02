@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            {{ Form::open(['route'=>['admin.campaign.parse'],'method' => 'post','class'=>'form-horizontal form-label-left']) }}
+            {{ Form::open(['route'=>['admin.campaign.parse'], 'enctype' => 'multipart/form-data', 'method' => 'post','class'=>'form-horizontal form-label-left']) }}
 
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="industry">
@@ -28,17 +28,17 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="campaign-csv">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="csv">
                     {{ __('views.admin.company.upload.csv') }}
                     <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input id="campaign-csv" type="file"
-                           class="form-control col-md-7 col-xs-12 @if($errors->has('campaign-csv')) parsley-error @endif"
-                           name="campaign-csv" required>
-                    @if($errors->has('campaign-csv'))
+                    <input id="csv" type="file"
+                           class="form-control col-md-7 col-xs-12 @if($errors->has('csv')) parsley-error @endif"
+                           name="csv" required>
+                    @if($errors->has('csv'))
                         <ul class="parsley-errors-list filled">
-                            @foreach($errors->get('campaign-csv') as $error)
+                            @foreach($errors->get('csv') as $error)
                                 <li class="parsley-required">{{ $error }}</li>
                             @endforeach
                         </ul>

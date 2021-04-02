@@ -10,7 +10,6 @@ use Illuminate\Contracts\View\View as IlluminateView;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 /**
@@ -53,7 +52,7 @@ class CompanyController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name'      => ['required', 'max:255'],
-            'logo'      => ['required'],
+            'logo'      => ['required', 'mimes:jpg,jpeg,gif,png'],
             'industry'  => ['required'],
         ]);
 

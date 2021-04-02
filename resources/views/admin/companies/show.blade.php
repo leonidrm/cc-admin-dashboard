@@ -10,7 +10,7 @@
                 <th>{{ __('views.admin.company.show.table_logo') }}</th>
                 @if($company->logo)
                     <td>
-                        <img class="image rounded-circle" src="{{asset('/storage/images/companies/' . $company->logo)}}"
+                        <img class="image rounded-circle" src="{{storage_path() . '/storage/images/companies/' . $company->logo}}"
                              alt="company_logo" style="width: 80px;height: 80px; padding: 10px; margin: 0;">
                     </td>
                 @endif
