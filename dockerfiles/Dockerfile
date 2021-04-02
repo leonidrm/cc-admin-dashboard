@@ -79,7 +79,7 @@ RUN npm -v
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Define work directory
-WORKDIR /var/www/laravel-boilerplate
+WORKDIR /var/www/cc-dashboard
 
 # Expose ports
 EXPOSE 9000
