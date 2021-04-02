@@ -11,10 +11,8 @@ bower_components/
 bootstrap/compiled.php
 bootstrap/cache/
 
-storage/
-storage/debugbar/
-storage/framework/views/
-storage/framework/sessions/
+/public/storage
+/storage/*.key
 
 composer.phar
 composer.lock
@@ -23,7 +21,6 @@ phpunit.phar
 public/assets
 public/mix-manifest.json
 /public/hot
-/public/storage
 
 .env
 .env.*.php
