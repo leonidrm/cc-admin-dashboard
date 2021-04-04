@@ -39,8 +39,10 @@ class CreateNewslettersTable extends Migration
             $table->integer('bounces');
             $table->float('bounce_rate');
             $table->string('campaign_channel');
+            $table->string('campaign_identifier');
             $table->tinyInteger('winning')->default(1)->unsigned();
             $table->timestamps();
+            $table->foreign('campaign_id')->references('id')->on('campaigns');
         });
     }
 

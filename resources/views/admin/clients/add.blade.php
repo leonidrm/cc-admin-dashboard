@@ -13,6 +13,7 @@
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <select id="company" name="company" class="select2" style="width: 100%" autocomplete="off">
+                        <option></option>
                         @foreach($companies as $company)
                             <option value="{{ $company->id }}">{{ $company->name }}</option>
                         @endforeach
@@ -164,5 +165,5 @@
 
 @section('scripts')
     @parent
-    {{ Html::script(mix('assets/admin/js/users/users.js')) }}
+    {{ Html::script(mix('assets/admin/js/clients.js')) }}
 @endsection

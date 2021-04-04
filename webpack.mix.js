@@ -86,6 +86,10 @@ mix.scripts([
 ], 'public/assets/admin/js/users.js').version();
 
 mix.scripts([
+    'resources/assets/admin/js/clients.js',
+], 'public/assets/admin/js/clients.js').version();
+
+mix.scripts([
     'resources/assets/admin/js/companies.js',
 ], 'public/assets/admin/js/companies.js').version();
 
