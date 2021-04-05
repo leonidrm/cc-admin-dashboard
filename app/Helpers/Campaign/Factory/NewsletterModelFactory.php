@@ -35,6 +35,7 @@ class NewsletterModelFactory
         $newsletter->bounce_rate           = $newsletterDTO->getBounceRate();
         $newsletter->campaign_channel      = $newsletterDTO->getCampaignChannel();
         $newsletter->winning               = $newsletterDTO->isWinningVariant();
+        $newsletter->campaign_identifier   = $newsletterDTO->getCampaignIdentifier();
 
         return $newsletter;
     }

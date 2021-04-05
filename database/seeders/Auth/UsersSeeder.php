@@ -7,6 +7,7 @@ use Database\traits\DisableForeignKeys;
 use Carbon\Carbon as Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Ramsey\Uuid\Uuid;
 
 class UsersSeeder extends Seeder
 {
@@ -24,34 +25,37 @@ class UsersSeeder extends Seeder
 
         $users = [
             [
-                'name' => 'Admin',
-                'email' => 'demo.admin@codecrew.us',
-                'password' => bcrypt('admin'),
-                'active' => true,
-                'confirmation_code' => \Ramsey\Uuid\Uuid::uuid4(),
-                'confirmed' => true,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'name'              => 'Admin',
+                'email'             => 'demo.admin@codecrew.us',
+                'password'          => bcrypt('admin'),
+                'company_id'        => null,
+                'active'            => true,
+                'confirmation_code' => Uuid::uuid4(),
+                'confirmed'         => true,
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now(),
             ],
             [
-                'name' => 'Demo',
-                'email' => 'demo.editor@codecrew.us',
-                'password' => bcrypt('editor'),
-                'active' => true,
-                'confirmation_code' => \Ramsey\Uuid\Uuid::uuid4(),
-                'confirmed' => true,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'name'              => 'Demo',
+                'email'             => 'demo.editor@codecrew.us',
+                'password'          => bcrypt('editor'),
+                'company_id'        => null,
+                'active'            => true,
+                'confirmation_code' => Uuid::uuid4(),
+                'confirmed'         => true,
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now(),
             ],
             [
-                'name' => 'Demo Client',
-                'email' => 'demo.client@codecrew.us',
-                'password' => bcrypt('client'),
-                'active' => true,
-                'confirmation_code' => \Ramsey\Uuid\Uuid::uuid4(),
-                'confirmed' => true,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'name'              => 'Demo Client',
+                'email'             => 'demo.client@codecrew.us',
+                'password'          => bcrypt('client'),
+                'company_id'        => 2,
+                'active'            => true,
+                'confirmation_code' => Uuid::uuid4(),
+                'confirmed'         => true,
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now(),
             ]
         ];
 

@@ -6,6 +6,8 @@ use App\Helpers\Campaign\DTO\NewsletterDTO;
 use App\Helpers\Campaign\Factory\CampaignModelFactory;
 use App\Helpers\Campaign\Factory\NewsletterDTOFactory;
 use App\Helpers\Campaign\Factory\NewsletterModelFactory;
+use Exception;
+use Illuminate\Support\Facades\DB;
 use League\Csv\Reader;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -31,21 +33,28 @@ class NewsletterCsvService
 
         $groupedNewsletterDTOList = $this->groupByCampaign($newsletterDTOItems);
 
-        foreach ($groupedNewsletterDTOList as $newsletterDTOList) {
-            $campaignId = null;
-            foreach ($newsletterDTOList as $i => $newsletterDTO) {
-                if ($i === 0) {
-                    $campaign = CampaignModelFactory::convertDTOtoModel($newsletterDTO);
-                    $campaign->save();
+        try {
+            DB::beginTransaction();
 
-                    $campaignId = $campaign->id;
+            foreach ($groupedNewsletterDTOList as $newsletterDTOList) {
+                $campaignId = null;
+                foreach ($newsletterDTOList as $i => $newsletterDTO) {
+                    if ($i === 0) {
+                        $campaign = CampaignModelFactory::convertDTOtoModel($newsletterDTO);
+                        $campaign->save();
+
+                        $campaignId = $campaign->id;
+                    }
+
+                    $newsletterDTO->setCampaignId($campaignId);
+
+                    $newsletter = NewsletterModelFactory::convertDTOtoModel($newsletterDTO);
+                    $newsletter->save();
                 }
-
-                $newsletterDTO->setCampaignId($campaignId);
-
-                $newsletter = NewsletterModelFactory::convertDTOtoModel($newsletterDTO);
-                $newsletter->save();
             }
+        } catch ( Exception $e) {
+            DB::rollBack();
+            throw new Exception(sprintf('Could not upload CSV %s file.', $csv->getClientOriginalName()));
         }
     }
 

@@ -1,8 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\Auth\User\User;
 use Faker;
+use Illuminate\Database\Eloquent\Factory;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +17,9 @@ use Faker;
 |
 */
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(\App\Models\Auth\User\User::class, function (Faker\Generator $faker) {
+/** @var Factory $factory */
+$factory->define(
+    User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [

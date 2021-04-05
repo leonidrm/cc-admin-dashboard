@@ -11,7 +11,7 @@ class CampaignModelFactory
     {
         $campaign             = new Campaign();
         $campaign->name       = $newsletterDTO->getCampaignName();
-        $campaign->company    = $newsletterDTO->getCompanyId();
+        $campaign->company_id = $newsletterDTO->getCompanyId();
 
         return $campaign;
     }

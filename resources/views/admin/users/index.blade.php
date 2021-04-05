@@ -53,7 +53,7 @@
                         <a class="btn btn-xs btn-info" href="{{ route('admin.users.edit', [$user->id]) }}" data-toggle="tooltip" data-placement="top" data-title="{{ __('views.admin.users.index.edit') }}">
                             <i class="fa fa-pencil"></i>
                         </a>
-                        @if(!$user->hasRole('administrator'))
+                        @if(\Illuminate\Support\Facades\Auth::user()->hasRole('administrator') && $user->hasRole('administrator') === false)
                             <a href="{{ route('admin.users.destroy', [$user->id]) }}" class="btn btn-xs btn-danger user_destroy" data-toggle="tooltip" data-placement="top" data-title="{{ __('views.admin.users.index.delete') }}">
                                 <i class="fa fa-trash"></i>
                             </a>

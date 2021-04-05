@@ -35,6 +35,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property float             $bounce_rate
  * @property string            $campaign_channel
  * @property boolean           $winning
+ * @property string            $campaign_identifier
  * @property DateTimeImmutable $create_at
  * @property DateTimeImmutable $updated_at
  */

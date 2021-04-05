@@ -22,12 +22,7 @@ class CampaignController extends Controller
 
     public function upload(Request $request)
     {
-        $errorMessages = $request->get('errorMessages');
-
-        return view('admin.campaign.upload', [
-            'companies' => Company::all(),
-            'errorMessages' => $errorMessages
-        ]);
+        return view('admin.campaign.upload', ['companies' => Company::all()]);
     }
 
     public function parseCsv(Request $request)
@@ -42,21 +37,16 @@ class CampaignController extends Controller
             return redirect()->back()->withErrors($validator->errors());
         }
 
-        $errorMessages = [];
-        $companyId     = (int)$request->get('company');
+        /** @var UploadedFile $csv */
+        $csv       = $request->csv;
+        $companyId = (int)$request->get('company');
 
-        if ( $request->hasFile('csv') ) {
-            /** @var UploadedFile $csv */
-            $csv = $request->csv;
-            try {
-                $this->campaignCsvService->parseCsvData($csv, $companyId);
-            } catch ( Exception $e) {
-                $errorMessages[] = $e->getMessage();
-            }
-        } else {
-            $errorMessages[] = 'Wrong Parameters were passed';
+        try {
+            $this->campaignCsvService->parseCsvData($csv, $companyId);
+        } catch ( Exception $e) {
+            return redirect()->route('admin.campaign.upload')->withFlashDanger('Unable to Upload CSV! Please contact admin');
         }
 
-        return redirect()->route('admin.campaign.upload', ['errorMessages' => $errorMessages]);
+        return redirect()->route('admin.campaign.upload')->withFlashSuccess('CSV uploaded Successfully!');
     }
 }

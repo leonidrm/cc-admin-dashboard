@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Company;
 use App\Models\Industry;
-use Exception;
+use App\Repositories\Access\Company\EloquentCompanyRepository;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View as IlluminateView;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 
 /**
@@ -27,6 +28,22 @@ use Illuminate\Support\Facades\Validator;
  */
 class CompanyController extends Controller
 {
+    /**
+     * Repository
+     *
+     * @var EloquentCompanyRepository
+     */
+    protected $repository;
+
+    /**
+     * Construct
+     *
+     */
+    public function __construct()
+    {
+        $this->repository = new EloquentCompanyRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -105,5 +122,21 @@ class CompanyController extends Controller
         $company->save();
 
         return redirect()->intended(route('admin.companies'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return Response
+     */
+    public function destroyCompany(int $id)
+    {
+        try {
+            $this->repository->destroy($id);
+            return redirect()->route('admin.companies')->withFlashSuccess('Company Deleted Successfully!');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.companies')->withFlashDanger('Unable to Delete Company!');
+        }
     }
 }

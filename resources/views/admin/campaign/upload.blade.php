@@ -4,23 +4,7 @@
 
 @section('content')
     <div class="row">
-        @if(isset($errorMessages))
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                @if($errorMessages === [])
-                    <div class="alert alert-success" role="alert">
-                        CSV File  successfully uploaded
-                    </div>
-                @else
-                    <div class="alert alert-danger" role="alert">
-                        @foreach($errorMessages as $errorMessage)
-                            <p>Please contact Admin!!!</p>
-                            <p>{{ $errorMessage }}</p>
-                            <br>
-                        @endforeach
-                    </div>
-                @endif
-            </div>
-        @endif
+
         <div class="col-md-12 col-sm-12 col-xs-12">
             {{ Form::open(['route'=>['admin.campaign.parse'], 'enctype' => 'multipart/form-data', 'method' => 'post','class'=>'form-horizontal form-label-left']) }}
 

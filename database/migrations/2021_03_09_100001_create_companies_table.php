@@ -20,6 +20,7 @@ class CreateCompaniesTable extends Migration
             $table->unsignedBigInteger('industry_id');
             $table->tinyInteger('active')->default(1)->unsigned();
             $table->timestamps();
+            $table->softDeletes();
             $table->foreign('industry_id')->references('id')->on('industries');
         });
     }

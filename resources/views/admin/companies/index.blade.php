@@ -55,6 +55,11 @@
                            data-title="{{ __('views.admin.company.index.edit') }}">
                             <i class="fa fa-pencil"></i>
                         </a>
+                        @if(\Illuminate\Support\Facades\Auth::user()->hasRole('administrator'))
+                            <a href="{{ route('admin.companies.destroy', [$company->id]) }}" class="btn btn-xs btn-danger company_destroy" data-toggle="tooltip" data-placement="top" data-title="{{ __('views.admin.company.index.delete') }}">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        @endif
                     </td>
                 </tr>
             @endforeach

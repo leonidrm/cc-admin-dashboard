@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Access\User\EloquentUserRepository;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -70,7 +69,7 @@ class UserController extends Controller
      * @param Request $request
      * @return IlluminateView|Factory
      */
-    public function restore(Request $request)
+    public function restoreUserIndex(Request $request)
     {
         return view('admin.users.restore', ['users' => User::onlyTrashed()->with('roles')->sortable(['email' => 'asc'])->paginate()]);
     }
@@ -332,6 +331,34 @@ class UserController extends Controller
     }
 
     /**
+     * Restore Users
+     *
+     * @param Request $request
+     * @return IlluminateView|Factory
+     */
+    public function restoreClientIndex(Request $request)
+    {
+        return view('admin.clients.restore', ['clients' => User::onlyTrashed()->with('roles')->sortable(['email' => 'asc'])->paginate()]);
+    }
+
+    /**
+     * Restore Users
+     *
+     * @param int $id
+     * @return Response
+     */
+    public function restoreClient(int $id)
+    {
+        $status = $this->repository->restore($id);
+
+        if ( $status ) {
+            return redirect()->route('admin.clients')->withFlashSuccess('Client Restored Successfully!');
+        }
+
+        return redirect()->route('admin.clients')->withFlashDanger('Unable to Restore Client!');
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param int $id
@@ -346,5 +373,22 @@ class UserController extends Controller
         }
 
         return redirect()->route('admin.users')->withFlashDanger('Unable to Delete User!');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return Response
+     */
+    public function destroyClient(int $id)
+    {
+        $status = $this->repository->destroy($id);
+
+        if ( $status ) {
+            return redirect()->route('admin.clients')->withFlashSuccess('Client Deleted Successfully!');
+        }
+
+        return redirect()->route('admin.clients')->withFlashDanger('Unable to Delete Client!');
     }
 }

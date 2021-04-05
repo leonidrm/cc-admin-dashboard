@@ -67,7 +67,13 @@
                     <li>
                         <a href="{{ route('admin.users.restore') }}">
                             <i class="fa fa-refresh" aria-hidden="true"></i>
-                            {{ __('views.backend.section.navigation.menu_1_3') }}
+                            {{ __('views.backend.section.navigation.users.restore') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.clients.restore') }}">
+                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                            {{ __('views.backend.section.navigation.clients.restore') }}
                         </a>
                     </li>
                 </ul>
