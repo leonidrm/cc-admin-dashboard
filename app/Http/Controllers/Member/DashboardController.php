@@ -10,8 +10,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
-use Arcanedev\LogViewer\LogViewer;
+use Facades\Arcanedev\LogViewer\LogViewer;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -75,22 +76,38 @@ class DashboardController extends Controller
         return response($data);
     }
 
-    public function getRegistrationChartData(): Response
-    {
+	public function getUserData(Request $request): Response
+	{
+		$data = [];
+		$userId = $request->user()->id;
+		$companyId = $request->user()->company_id;
+		$campaigns = DB::table('campaigns')->where('company_id', '=', $companyId)->get();
 
-        $data = [
-            'registration_form' => User::whereDoesntHave('providers')->count(),
-            'google' => User::whereHas('providers', function ($query) {
-                $query->where('provider', 'google');
-            })->count(),
-            'facebook' => User::whereHas('providers', function ($query) {
-                $query->where('provider', 'facebook');
-            })->count(),
-            'twitter' => User::whereHas('providers', function ($query) {
-                $query->where('provider', 'twitter');
-            })->count(),
-        ];
+		$data['company'] = DB::table('companies')->where('id', '=', $companyId)->get();
+		$data['campaigns'] = $campaigns;
 
-        return response($data);
-    }
+		foreach ($campaigns as $index => $campaign) {
+			$newsletter = DB::table('newsletters')->where('campaign_id', '=', $campaign->id)->get();
+			$data['newsletters'][$index] = $newsletter;
+		}
+
+
+
+
+
+
+
+
+
+		return response($data);
+	}
+
+
+
+
+
+
+
+
+
 }

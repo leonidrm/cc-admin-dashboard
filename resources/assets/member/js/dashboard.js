@@ -101,7 +101,7 @@
             var self = this;
 
             $.ajax({
-                url: 'admin/dashboard/log-chart',
+                url: 'member/dashboard/log-chart',
                 data: {start: start, end: end},
                 success: function (response) {
                     var data = {};
@@ -154,7 +154,7 @@
     logActivity.init($('#log_activity'));
 
 
-    var registrationUsage = {
+    var dashboardUsage = {
         _defaults: {
             type: 'doughnut',
             tooltipFillColor: "rgba(51, 51, 51, 0.55)",
@@ -181,35 +181,42 @@
                 responsive: false
             }
         },
-        init: function ($el) {
+        init: function ($el, start, end) {
             var self = this;
             $el = $($el);
 
             $.ajax({
-                url: 'admin/dashboard/registration-chart',
+                url: 'member/dashboard/user-data',
+                data: {start: start, end: end},
                 success: function (response) {
-                    $.each($el.find('.tile_label'), function () {
-                        self._defaults.data.labels.push($(this).text());
-                    });
 
-                    var count = 0;
 
-                    $.each(response, function () {
-                        count += parseInt(this);
-                    });
 
-                    $('#registration_usage_from').text(100 / count * parseInt(response.registration_form));
-                    $('#registration_usage_google').text(100 / count * parseInt(response.google));
-                    $('#registration_usage_facebook').text(100 / count * parseInt(response.facebook));
-                    $('#registration_usage_twitter').text(100 / count * parseInt(response.twitter));
 
-                    self._defaults.data.datasets[0].data = [response.registration_form, response.google, response.facebook, response.twitter];
 
-                    new Chart($el.find('.canvasChart'), self._defaults);
+                    console.log(response);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    //self._defaults.data.datasets[0].data = [response.registration_form, response.google, response.facebook, response.twitter];
+
+                    //new Chart($el.find('.canvasChart'), self._defaults);
                 }
             });
         }
     };
 
-    registrationUsage.init($('#registration_usage'));
+    dashboardUsage.init($('#registration_usage'), moment().subtract(6, 'days').format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));
 })(jQuery);
