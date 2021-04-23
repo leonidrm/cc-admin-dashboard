@@ -76,38 +76,33 @@ class DashboardController extends Controller
         return response($data);
     }
 
-	public function getUserData(Request $request): Response
+	public function getCompanyData(Request $request): Response
 	{
 		$data = [];
-		$userId = $request->user()->id;
 		$companyId = $request->user()->company_id;
 		$campaigns = DB::table('campaigns')->where('company_id', '=', $companyId)->get();
 
-		$data['company'] = DB::table('companies')->where('id', '=', $companyId)->get();
+		$data['company'] = DB::table('companies')->where('id', '=', $companyId)->get()->first();
+		$data['users'] = DB::table('users')->where('company_id', '=', $companyId)->get();
+		$data['currentUserId'] = $request->user()->id;
 		$data['campaigns'] = $campaigns;
+		//$data['newsletters'] = [];
 
-		foreach ($campaigns as $index => $campaign) {
-			$newsletter = DB::table('newsletters')->where('campaign_id', '=', $campaign->id)->get();
-			$data['newsletters'][$index] = $newsletter;
+		$counts = [
+			'newsletters' => 0
+		];
+
+		foreach ($data['campaigns'] as $index => $campaign) {
+			$newsletters = DB::table('newsletters')->where('campaign_id', '=', $campaign->id)->get();
+			$data['campaigns'][$index]->newsletters = $newsletters;
+
+			foreach ($newsletters as $newsletter) {
+				$data['newsletters'][$counts['newsletters']] = $newsletter;
+				$counts['newsletters']++;
+			}
 		}
-
-
-
-
-
-
-
-
 
 		return response($data);
 	}
-
-
-
-
-
-
-
-
 
 }

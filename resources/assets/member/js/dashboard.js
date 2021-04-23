@@ -186,15 +186,20 @@
             $el = $($el);
 
             $.ajax({
-                url: 'member/dashboard/user-data',
+                url: 'member/dashboard/company-data',
                 data: {start: start, end: end},
-                success: function (response) {
+                success: function (data) {
+
+                    $.each(data.users, function (index, item) {
+                        if (item.id === data.currentUserId) {
+                            $('[data-username]').text(item.name);
+                        }
+                    });
+
+                    $('[data-company]').text(data.company.name);
 
 
 
-
-
-                    console.log(response);
 
 
 

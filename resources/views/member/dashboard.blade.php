@@ -3,24 +3,19 @@
 @section('content')
     <!-- page content -->
 
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div id="log_activity" class="dashboard_graph">
+    <h1 class="username"><span data-username></span> (<span data-company></span>)</h1>
 
-                <div class="row x_title">
-                    <div class="col-md-6">
-                        <h3>{{ __('views.member.dashboard.sub_title_0') }}</h3>
-                    </div>
-                </div>
 
-                <div class="col-md-9 col-sm-9 col-xs-12">
-                    <div class="chart demo-placeholder" style="width: 100%; height:460px;"></div>
-                </div>
 
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
+
+
+
+
+
+
+
+
+
 
     <!-- page content -->
 @endsection
