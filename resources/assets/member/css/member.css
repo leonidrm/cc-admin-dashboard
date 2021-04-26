@@ -2,3 +2,24 @@
     margin-top: 20px;
     cursor: pointer;
 }
+
+.x_title,
+.x_content {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.panel_toolbox {
+	min-width: 45px;
+}
+
+.x_title h2 {
+	font-size: 26px;
+	margin: 0;
+}
+
+
+
+
+
+
