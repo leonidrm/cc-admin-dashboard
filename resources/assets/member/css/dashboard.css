@@ -4,9 +4,24 @@
 	margin: 0 0 .7em;
 }
 
-.chart-title {
-	font-size: 24px;
-	margin: 0 0 1em;
+.x_panel {
+	padding: 10px 15px;
+	margin-bottom: 20px;
+}
+
+.panel_toolbox {
+	min-width: 45px;
+}
+
+.x_title,
+.x_content {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.x_title h2 {
+	font-size: 26px;
+	margin: 0;
 }
 
 

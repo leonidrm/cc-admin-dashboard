@@ -40,13 +40,31 @@
                 url: 'member/dashboard/company-data',
                 data: {},
                 success: function (data) {
-
                     self.getPageTitle(data);
-                    self.initNewslettersRevenueChart(data);
-                    self.initNewslettersBouncesChart(data);
-                    self.initNewslettersBounceRateChart(data);
 
+                    let chartNames = [
+                        'bounce_rate',
+                        'bounces',
+                        'click_rate',
+                        'open_rate',
+                        'placed_order_rate',
+                        'revenue',
+                        'spam_complaints',
+                        'spam_complaints_rate',
+                        'successful_deliveries',
+                        'total_clicks',
+                        'total_opens',
+                        'total_recipients',
+                        'unique_clicks',
+                        'unique_opens',
+                        'unique_placed_orders',
+                        'unsubscribes',
+                        'winning'
+                    ];
 
+                    chartNames.forEach(function(chartName) {
+                        self.initCharts(chartName, data);
+                    });
 
 
 
@@ -89,38 +107,16 @@
             $('[data-company]').text(data.company.name);
         },
 
-        initNewslettersRevenueChart: function (companyData) {
+        initCharts: function (chartId, companyData) {
             let chartOptions = this.defaultChartOptions();
 
             companyData.newsletters.forEach(function(item) {
-                chartOptions.data.datasets[0].data.push(item.revenue);
+                chartOptions.data.datasets[0].data.push(item[chartId]);
                 chartOptions.data.labels.push(item.list + '\n' + item.subject);
             });
 
-            new Chart($('#newslettersRevenueChart'), chartOptions);
-        },
-
-        initNewslettersBouncesChart: function (companyData) {
-            let chartOptions = this.defaultChartOptions();
-
-            companyData.newsletters.forEach(function(item) {
-                chartOptions.data.datasets[0].data.push(item.bounces);
-                chartOptions.data.labels.push(item.list + '\n' + item.subject);
-            });
-
-            new Chart($('#newslettersBouncesChart'), chartOptions);
-        },
-
-        initNewslettersBounceRateChart: function (companyData) {
-            let chartOptions = this.defaultChartOptions();
-
-            companyData.newsletters.forEach(function(item) {
-                chartOptions.data.datasets[0].data.push(item.bounce_rate);
-                chartOptions.data.labels.push(item.list + '\n' + item.subject);
-            });
-
-            new Chart($('#newslettersBounceRateChart'), chartOptions);
-        },
+            new Chart($('#' + chartId), chartOptions);
+        }
 
 
 
