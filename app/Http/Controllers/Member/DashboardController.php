@@ -86,20 +86,17 @@ class DashboardController extends Controller
 		$data['users'] = DB::table('users')->where('company_id', '=', $companyId)->get();
 		$data['currentUserId'] = $request->user()->id;
 		$data['campaigns'] = $campaigns;
-		//$data['newsletters'] = [];
 
-		$counts = [
-			'newsletters' => 0
-		];
+		$campaignIds = [];
 
 		foreach ($data['campaigns'] as $index => $campaign) {
-			$newsletters = DB::table('newsletters')->where('campaign_id', '=', $campaign->id)->get();
-			$data['campaigns'][$index]->newsletters = $newsletters;
+			$campaignIds[$index] = $campaign->id;
+		}
 
-			foreach ($newsletters as $newsletter) {
-				$data['newsletters'][$counts['newsletters']] = $newsletter;
-				$counts['newsletters']++;
-			}
+		$newsletters = DB::table('newsletters')->whereIn('campaign_id', $campaignIds)->get();
+
+		foreach ($newsletters as $index => $newsletter) {
+			$data['newsletters'][$index] = $newsletter;
 		}
 
 		return response($data);

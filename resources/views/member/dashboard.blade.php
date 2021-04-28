@@ -11,7 +11,7 @@
             <div class="col-xs-12 col-sm-6 col-lg-4">
                 <div class="x_panel">
                     <div class="x_title clearfix">
-                        <h2>Revenue</h2>
+                        <h2>{{ __('views.member.dashboard.revenue') }}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -27,7 +27,7 @@
             <div class="col-xs-12 col-sm-6 col-lg-4">
                 <div class="x_panel">
                     <div class="x_title clearfix">
-                        <h2>Bounces</h2>
+                        <h2>{{ __('views.member.dashboard.bounces') }}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -43,7 +43,7 @@
             <div class="col-xs-12 col-sm-6 col-lg-4">
                 <div class="x_panel">
                     <div class="x_title clearfix">
-                        <h2>Bounce rate</h2>
+                        <h2>{{ __('views.member.dashboard.bounce_rate') }}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -59,7 +59,7 @@
             <div class="col-xs-12 col-sm-6 col-lg-4">
                 <div class="x_panel">
                     <div class="x_title clearfix">
-                        <h2>Click rate</h2>
+                        <h2>{{ __('views.member.dashboard.click_rate') }}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -72,32 +72,10 @@
                 </div>
             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <div class="col-xs-12 col-sm-6 col-lg-4">
                 <div class="x_panel">
                     <div class="x_title clearfix">
-                        <h2>Open rate</h2>
+                        <h2>{{ __('views.member.dashboard.open_rate') }}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -113,7 +91,7 @@
             <div class="col-xs-12 col-sm-6 col-lg-4">
                 <div class="x_panel">
                     <div class="x_title clearfix">
-                        <h2>Placed order rate</h2>
+                        <h2>{{ __('views.member.dashboard.placed_order_rate') }}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -129,7 +107,7 @@
             <div class="col-xs-12 col-sm-6 col-lg-4">
                 <div class="x_panel">
                     <div class="x_title clearfix">
-                        <h2>Spam complaints</h2>
+                        <h2>{{ __('views.member.dashboard.spam_complaints') }}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -145,7 +123,7 @@
             <div class="col-xs-12 col-sm-6 col-lg-4">
                 <div class="x_panel">
                     <div class="x_title clearfix">
-                        <h2>Spam complaints rate</h2>
+                        <h2>{{ __('views.member.dashboard.spam_complaints_rate') }}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -161,7 +139,7 @@
             <div class="col-xs-12 col-sm-6 col-lg-4">
                 <div class="x_panel">
                     <div class="x_title clearfix">
-                        <h2>Successful deliveries</h2>
+                        <h2>{{ __('views.member.dashboard.successful_deliveries') }}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -177,7 +155,7 @@
             <div class="col-xs-12 col-sm-6 col-lg-4">
                 <div class="x_panel">
                     <div class="x_title clearfix">
-                        <h2>Total clicks</h2>
+                        <h2>{{ __('views.member.dashboard.total_clicks') }}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -193,7 +171,7 @@
             <div class="col-xs-12 col-sm-6 col-lg-4">
                 <div class="x_panel">
                     <div class="x_title clearfix">
-                        <h2>Total opens</h2>
+                        <h2>{{ __('views.member.dashboard.total_opens') }}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -209,7 +187,7 @@
             <div class="col-xs-12 col-sm-6 col-lg-4">
                 <div class="x_panel">
                     <div class="x_title clearfix">
-                        <h2>Total recipients</h2>
+                        <h2>{{ __('views.member.dashboard.total_recipients') }}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -225,7 +203,7 @@
             <div class="col-xs-12 col-sm-6 col-lg-4">
                 <div class="x_panel">
                     <div class="x_title clearfix">
-                        <h2>Unique clicks</h2>
+                        <h2>{{ __('views.member.dashboard.unique_clicks') }}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -241,7 +219,7 @@
             <div class="col-xs-12 col-sm-6 col-lg-4">
                 <div class="x_panel">
                     <div class="x_title clearfix">
-                        <h2>Unique opens</h2>
+                        <h2>{{ __('views.member.dashboard.unique_opens') }}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -257,7 +235,7 @@
             <div class="col-xs-12 col-sm-6 col-lg-4">
                 <div class="x_panel">
                     <div class="x_title clearfix">
-                        <h2>Unique placed orders</h2>
+                        <h2>{{ __('views.member.dashboard.unique_placed_orders') }}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -273,7 +251,7 @@
             <div class="col-xs-12 col-sm-6 col-lg-4">
                 <div class="x_panel">
                     <div class="x_title clearfix">
-                        <h2>Unsubscribes</h2>
+                        <h2>{{ __('views.member.dashboard.unsubscribes') }}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -289,7 +267,7 @@
             <div class="col-xs-12 col-sm-6 col-lg-4">
                 <div class="x_panel">
                     <div class="x_title clearfix">
-                        <h2>Winning</h2>
+                        <h2>{{ __('views.member.dashboard.winning') }}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -301,66 +279,8 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- page content -->
 @endsection
 

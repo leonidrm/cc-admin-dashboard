@@ -1,5 +1,5 @@
 (function ($) {
-    var dashboardUsage = {
+    let dashboardUsage = {
         defaultChartOptions: function () {
             return {
                 type: 'bar',
@@ -65,29 +65,19 @@
                     chartNames.forEach(function(chartName) {
                         self.initCharts(chartName, data);
                     });
-
-
-
-
-
-
-
-
-
-
                 }
             });
         },
 
         getRandomColors: function (number) {
-            var randomColors = [];
-            var letters = '0123456789ABCDEF';
-            var color = '';
+            let randomColors = [];
+            const letters = '0123456789ABCDEF';
+            let color = '';
 
-            for (var i = 0; i < number; i++) {
+            for (let i = 0; i < number; i++) {
                 color = '#';
 
-                for (var j = 0; j < 6; j++) {
+                for (let j = 0; j < 6; j++) {
                     color += letters[Math.floor(Math.random() * 16)];
                 }
 
@@ -117,18 +107,6 @@
 
             new Chart($('#' + chartId), chartOptions);
         }
-
-
-
-
-
-
-
-
-
-
-
-
     };
 
     dashboardUsage.init();
