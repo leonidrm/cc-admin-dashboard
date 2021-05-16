@@ -49,7 +49,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('users', 'UserController@index')->name('users');
     Route::get('users/add', 'UserController@addUser')->name('users.add');
     Route::post('users/create', 'UserController@createUser')->name('users.create');
-    Route::get('users/restore', 'UserController@restore')->name('users.restore');
+    Route::get('users/restore', 'UserController@restoreUserIndex')->name('users.restore');
     Route::get('users/{id}/restore', 'UserController@restoreUser')->name('users.restore-user');
     Route::get('users/{user}', 'UserController@show')->name('users.show');
     Route::get('users/{user}/edit', 'UserController@edit')->name('users.edit');
@@ -63,8 +63,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('clients', 'UserController@clientList')->name('clients');
     Route::get('clients/add', 'UserController@addClient')->name('clients.add');
     Route::post('clients/create', 'UserController@createClient')->name('clients.create');
-    Route::get('clients/restore', 'UserController@restore-client')->name('clients.restore');
-    Route::get('clients/{id}/restore', 'UserController@restoreClient')->name('clients.restore');
+    Route::get('clients/restore', 'UserController@restoreClientIndex')->name('clients.restore');
+    Route::get('clients/{id}/restore', 'UserController@restoreClient')->name('clients.restore-client');
     Route::get('clients/{user}', 'UserController@showClient')->name('clients.show');
     Route::get('clients/{user}/edit', 'UserController@editClient')->name('clients.edit');
     Route::put('clients/{user}', 'UserController@updateClient')->name('clients.update');
@@ -86,6 +86,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('companies/{company}', 'CompanyController@show')->name('companies.show');
     Route::get('companies/{company}/edit', 'CompanyController@edit')->name('companies.edit');
     Route::put('companies/{company}', 'CompanyController@update')->name('companies.update');
+    Route::any('companies/{id}/destroy', 'CompanyController@destroyCompany')->name('companies.destroy');
 
     //CSV Uploads
     Route::get('campaign/upload', 'CampaignController@upload')->name('campaign.upload');

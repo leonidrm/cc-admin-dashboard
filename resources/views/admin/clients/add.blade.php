@@ -13,6 +13,7 @@
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <select id="company" name="company" class="select2" style="width: 100%" autocomplete="off">
+                        <option></option>
                         @foreach($companies as $company)
                             <option value="{{ $company->id }}">{{ $company->name }}</option>
                         @endforeach
@@ -112,6 +113,7 @@
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">
                     {{ __('views.admin.clients.add.password') }}
+                    <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <input id="password" type="password"
@@ -130,6 +132,7 @@
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password_confirmation">
                     {{ __('views.admin.clients.add.confirm_password') }}
+                    <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <input id="password_confirmation" type="password"
@@ -164,5 +167,5 @@
 
 @section('scripts')
     @parent
-    {{ Html::script(mix('assets/admin/js/users/users.js')) }}
+    {{ Html::script(mix('assets/admin/js/clients.js')) }}
 @endsection

@@ -1,0 +1,41 @@
+<?php declare(strict_types=1);
+
+namespace Database\Seeders\Auth;
+
+use Database\traits\TruncateTable;
+use Database\traits\DisableForeignKeys;
+use Carbon\Carbon as Carbon;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class IndustriesSeeder extends Seeder
+{
+    use DisableForeignKeys, TruncateTable;
+
+    /**
+     * Run the database seed.
+     *
+     * @return void
+     */
+    public function run(): void
+    {
+        $this->disableForeignKeys();
+        $this->truncate('industries');
+
+        $industries = [
+            [
+                'name' => 'Insurances',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'name' => 'Car dealer',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+        ];
+
+        DB::table('industries')->insert($industries);
+        $this->enableForeignKeys();
+    }
+}

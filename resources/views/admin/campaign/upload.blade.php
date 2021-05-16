@@ -4,6 +4,7 @@
 
 @section('content')
     <div class="row">
+
         <div class="col-md-12 col-sm-12 col-xs-12">
             {{ Form::open(['route'=>['admin.campaign.parse'], 'enctype' => 'multipart/form-data', 'method' => 'post','class'=>'form-horizontal form-label-left']) }}
 
@@ -13,6 +14,7 @@
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <select id="company" name="company" class="select2" style="width: 100%" autocomplete="off">
+                        <option></option>
                         @foreach($companies as $company)
                             <option value="{{ $company->id }}">{{ $company->name }}</option>
                         @endforeach

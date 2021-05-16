@@ -51,6 +51,7 @@
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <select id="industry" name="industry" class="select2" style="width: 100%" autocomplete="off">
+                        <option></option>
                         @foreach($industries as $industry)
                             <option value="{{ $industry->id }}">{{ $industry->name }}</option>
                         @endforeach

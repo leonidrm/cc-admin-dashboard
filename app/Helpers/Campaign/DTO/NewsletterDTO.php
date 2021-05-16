@@ -4,8 +4,14 @@ namespace App\Helpers\Campaign\DTO;
 
 use DateTimeImmutable;
 
-class CampaignDTO
+class NewsletterDTO
 {
+    /** @var int */
+    protected $company_id;
+
+    /** @var int */
+    protected $campaign_id;
+
     /** @var string */
     protected $campaignName;
 
@@ -22,7 +28,7 @@ class CampaignDTO
     protected $list;
 
     /** @var DateTimeImmutable */
-    protected $sendTime;
+    protected $sendDate;
 
     /** @var string */
     protected $sendWeekDay;
@@ -76,13 +82,45 @@ class CampaignDTO
     protected $bounceRate;
 
     /** @var string */
-    protected $campaignId;
+    protected $campaignIdentifier;
 
     /** @var string */
     protected $campaignChannel;
 
     /** @var bool */
     protected $winningVariant;
+
+    /**
+     * @return int
+     */
+    public function getCompanyId(): int
+    {
+        return $this->company_id;
+    }
+
+    /**
+     * @param int $company_id
+     */
+    public function setCompanyId(int $company_id): void
+    {
+        $this->company_id = $company_id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCampaignId(): int
+    {
+        return $this->campaign_id;
+    }
+
+    /**
+     * @param int $campaign_id
+     */
+    public function setCampaignId(int $campaign_id): void
+    {
+        $this->campaign_id = $campaign_id;
+    }
 
     /**
      * @return string
@@ -167,17 +205,17 @@ class CampaignDTO
     /**
      * @return DateTimeImmutable
      */
-    public function getSendTime(): DateTimeImmutable
+    public function getSendDate(): DateTimeImmutable
     {
-        return $this->sendTime;
+        return $this->sendDate;
     }
 
     /**
-     * @param DateTimeImmutable $sendTime
+     * @param DateTimeImmutable $sendDate
      */
-    public function setSendTime(DateTimeImmutable $sendTime): void
+    public function setSendDate(DateTimeImmutable $sendDate): void
     {
-        $this->sendTime = $sendTime;
+        $this->sendDate = $sendDate;
     }
 
     /**
@@ -455,17 +493,17 @@ class CampaignDTO
     /**
      * @return string
      */
-    public function getCampaignId(): string
+    public function getCampaignIdentifier(): string
     {
-        return $this->campaignId;
+        return $this->campaignIdentifier;
     }
 
     /**
-     * @param string $campaignId
+     * @param string $campaignIdentifier
      */
-    public function setCampaignId(string $campaignId): void
+    public function setCampaignIdentifier(string $campaignIdentifier): void
     {
-        $this->campaignId = $campaignId;
+        $this->campaignIdentifier = $campaignIdentifier;
     }
 
     /**
