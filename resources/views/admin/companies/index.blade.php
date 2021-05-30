@@ -30,8 +30,10 @@
                 <tr>
                     <td>
                         @if($company->logo)
-                            <img class="image rounded-circle" src="{{asset('/storage/images/companies/' . $company->logo)}}"
-                                 alt="company_logo" style="width: 80px;height: 80px; padding: 10px; margin: 0;">
+                            <a href="{{ route('admin.companies.users', [$company->id]) }}">
+                                <img class="image rounded-circle" src="{{asset('/storage/images/companies/' . $company->logo)}}"
+                                     alt="company_logo" style="width: 80px; height: 80px; margin: 0;">
+                            </a>
                         @endif
                     </td>
                     <td>
