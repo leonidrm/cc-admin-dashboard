@@ -34,7 +34,9 @@
                                  alt="company_logo" style="width: 80px;height: 80px; padding: 10px; margin: 0;">
                         @endif
                     </td>
-                    <td>{{ $company->name }}</td>
+                    <td>
+                        <a href="{{ route('admin.companies.users', [$company->id]) }}">{{ $company->name }}</a>
+                    </td>
                     <td>{{ $company->industry->name }}</td>
                     <td>
                         @if($company->active)

@@ -87,6 +87,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('companies/{company}/edit', 'CompanyController@edit')->name('companies.edit');
     Route::put('companies/{company}', 'CompanyController@update')->name('companies.update');
     Route::any('companies/{id}/destroy', 'CompanyController@destroyCompany')->name('companies.destroy');
+	Route::get('companies/{company}/users', 'CompanyController@users')->name('companies.users');
 
     //CSV Uploads
     Route::get('campaign/upload', 'CampaignController@upload')->name('campaign.upload');

@@ -1,4 +1,4 @@
-<div class="top_nav">
+<div class="top_nav clearfix">
     <div class="nav_menu">
         <nav>
             <div class="nav toggle">
