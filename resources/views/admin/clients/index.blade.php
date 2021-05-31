@@ -15,7 +15,7 @@
             <tr>
                 <th>@sortablelink('company', __('views.admin.clients.index.company'),['page' => $clients->currentPage()])</th>
                 <th>@sortablelink('email', __('views.admin.clients.index.email'),['page' => $clients->currentPage()])</th>
-                <th>@sortablelink('name',  __('views.admin.clients.index.name'),['page' => $clients->currentPage()])</th>
+                <th>@sortablelink('name',  __('views.admin.clients.index.user_name'),['page' => $clients->currentPage()])</th>
                 <th>@sortablelink('active', __('views.admin.clients.index.status'),['page' => $clients->currentPage()])</th>
                 <th>@sortablelink('confirmed', __('views.admin.clients.index.confirmed'),['page' => $clients->currentPage()])</th>
                 <th>@sortablelink('created_at', __('views.admin.clients.index.created_at'),['page' => $clients->currentPage()])</th>

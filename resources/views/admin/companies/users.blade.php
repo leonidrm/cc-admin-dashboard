@@ -1,64 +1,112 @@
 @extends('admin.layouts.admin')
 
-@section('title', __('views.admin.company.show.title', ['name' => $company->name]))
+{{-- Overwriting the default section --}}
+@section('title')
+    {!! __('views.admin.company.users.title', ['url' => asset('/storage/images/companies/' . $company->logo), 'name' => $company->name]) !!}
+@overwrite
 
 @section('content')
-    <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-        <tbody>
-    @foreach($clients as $client)
-        <tr>
-            <td>{{ $client->email }}</td>
-            <td>{{ $client->name }}</td>
-            <td>{{ $client->roles->pluck('name')->implode(',') }}</td>
-            <td>
-                @if($client->active)
-                    <span class="label label-primary">{{ __('views.admin.users.index.active') }}</span>
-                @else
-                    <span class="label label-danger">{{ __('views.admin.users.index.inactive') }}</span>
-                @endif
-            </td>
-            <td>
-                @if($client->confirmed)
-                    <span class="label label-success">{{ __('views.admin.users.index.confirmed') }}</span>
-                @else
-                    <span class="label label-warning">{{ __('views.admin.users.index.not_confirmed') }}</span>
-                @endif</td>
-            <td>{{ $client->created_at }}</td>
-            <td>{{ $client->updated_at }}</td>
-            <td>
-                <a class="btn btn-xs btn-primary" href="{{ route('admin.clients.restore-client', [$client->id]) }}" data-toggle="tooltip" data-placement="top" data-title="{{ __('views.admin.users.index.restore') }}">
-                    <i class="fa fa-undo"></i>
-                </a>
-            </td>
-        </tr>
-    @endforeach
-        </tbody>
-    </table>
+    <div class="clearfix"></div>
 
+    <div class="company-page">
+        <div class="tabs clearfix">
+            <ul class="tab-header">
+                @foreach($clients as $client)
+                    <li @if ($loop->first)class="active"@endif>
+                        <a href="#tab-{{ $client->id }}" data-toggle="tab">
+                            <span class="name">{{ $client->name }}</span>
+                            <span class="email">{{ $client->email }}</span>
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
 
+            <div class="tab-content">
+                @foreach($clients as $client)
+                    <div class="tab-pane fade @if($loop->first) in active @endif" id="tab-{{ $client->id }}">
+                        <div class="client-details">
+                            <table class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
+                                <tbody>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>{{ $client->id }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ __('views.admin.clients.index.company') }}</td>
+                                    <td>{{ $client->company->name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ __('views.admin.clients.index.user_name') }}</td>
+                                    <td>{{ $client->name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ __('views.admin.clients.index.email') }}</td>
+                                    <td>{{ $client->email }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ __('views.admin.clients.index.status') }}</td>
+                                    <td>
+                                        @if($client->active)
+                                            <span class="label label-primary">{{ __('views.admin.clients.index.active') }}</span>
+                                        @else
+                                            <span class="label label-danger">{{ __('views.admin.clients.index.inactive') }}</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{ __('views.admin.clients.index.confirmed') }}</td>
+                                    <td>
+                                        @if($client->confirmed)
+                                            <span class="label label-success">{{ __('views.admin.clients.index.confirmed') }}</span>
+                                        @else
+                                            <span class="label label-warning">{{ __('views.admin.clients.index.not_confirmed') }}</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{ __('views.admin.clients.index.created_at') }}</td>
+                                    <td>{{ $client->created_at }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ __('views.admin.clients.index.updated_at') }}</td>
+                                    <td>{{ $client->updated_at }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ __('views.admin.clients.index.last_login') }}</td>
+                                    <td>{{ $client->last_login }}</td>
+                                </tr>
+                                @if($client->deleted_at)
+                                <tr>
+                                    <td>{{ __('views.admin.clients.index.deleted_at') }}</td>
+                                    <td>{{ $client->deleted_at }}</td>
+                                </tr>
+                                @endif
+                                </tbody>
+                            </table>
 
+                            <div class="actions">
+                                @if(!$client->deleted_at)
+                                <a class="btn btn-info" href="{{ route('admin.clients.edit', [$client->id]) }}">
+                                    {{ __('views.admin.clients.index.edit') }}
+                                </a>
+                                @endif
 
-
-
-
-
-
-
-
-    {{ $company->name }}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                @if(\Illuminate\Support\Facades\Auth::user()->hasRole('administrator'))
+                                    @if($client->deleted_at)
+                                        <a class="btn btn-primary" href="{{ route('admin.clients.restore-client', [$client->id]) }}">
+                                            {{ __('views.admin.users.index.restore') }}
+                                        </a>
+                                    @else
+                                        <a href="{{ route('admin.clients.destroy', [$client->id]) }}" class="btn btn-danger user_destroy">
+                                            {{ __('views.admin.clients.index.delete') }}
+                                        </a>
+                                    @endif
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
 @endsection

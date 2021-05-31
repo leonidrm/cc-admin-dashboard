@@ -127,7 +127,7 @@ class CompanyController extends Controller
 
 	public function users(Company $company)
 	{
-		$query = User::query()->whereHas('roles', function ($query) {
+		$query = User::withTrashed()->whereHas('roles', function ($query) {
 			$query->whereIn('name', ['client']);
 		});
 
