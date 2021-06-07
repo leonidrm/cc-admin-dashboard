@@ -288,7 +288,7 @@
     "views.admin.company.edit.cancel": "Cancel",
     "views.admin.company.edit.save": "Save",
     "views.admin.company.edit.update": "Update",
-    "views.admin.company.users.title": "<img class='image' src=':url' alt='company_logo' /> :name",
+    "views.admin.company.users.title": "<img class='company-logo' src=':url' alt='company_logo' /> :name",
     "**************************** Campaign Management *************************************************": "Campaign Management i18n",
     "views.admin.campaign.upload.title": "Upload Campaign Data",
     "views.admin.campaign.upload.cancel": "Cancel",

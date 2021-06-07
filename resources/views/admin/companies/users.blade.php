@@ -97,7 +97,7 @@
                                             {{ __('views.admin.users.index.restore') }}
                                         </a>
                                     @else
-                                        <a href="{{ route('admin.clients.destroy', [$client->id]) }}" class="btn btn-danger user_destroy">
+                                        <a href="{{ route('admin.clients.destroy', [$client->id]) }}" class="btn btn-danger">
                                             {{ __('views.admin.clients.index.delete') }}
                                         </a>
                                     @endif

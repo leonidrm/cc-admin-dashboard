@@ -41,8 +41,7 @@
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     @if($company->logo)
-                        <img class="image rounded-circle" src="{{asset('/storage/images/companies/' . $company->logo)}}"
-                             alt="company_logo" style="width: 80px; height: 80px; margin: 0 0 10px;">
+                        <img class="company-logo" src="{{asset('/storage/images/companies/' . $company->logo)}}" alt="company_logo" style="margin: 0 0 10px;">
                     @endif
                     <input id="logo" type="file"
                            class="form-control col-md-7 col-xs-12 @if($errors->has('logo')) parsley-error @endif"
