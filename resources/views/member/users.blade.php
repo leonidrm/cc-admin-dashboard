@@ -1,4 +1,4 @@
-@extends('admin.layouts.admin')
+@extends('member.layouts.member')
 
 {{-- Overwriting the default section --}}
 @section('title')
@@ -83,26 +83,6 @@
                                 @endif
                                 </tbody>
                             </table>
-
-                            <div class="actions">
-                                @if(!$client->deleted_at)
-                                <a class="btn btn-info" href="{{ route('admin.clients.edit', [$client->id]) }}">
-                                    {{ __('views.admin.clients.index.edit') }}
-                                </a>
-                                @endif
-
-                                @if(\Illuminate\Support\Facades\Auth::user()->hasRole('administrator'))
-                                    @if($client->deleted_at)
-                                        <a class="btn btn-primary" href="{{ route('admin.clients.restore-client', [$client->id]) }}">
-                                            {{ __('views.admin.users.index.restore') }}
-                                        </a>
-                                    @else
-                                        <a href="{{ route('admin.clients.destroy', [$client->id]) }}" class="btn btn-danger">
-                                            {{ __('views.admin.clients.index.delete') }}
-                                        </a>
-                                    @endif
-                                @endif
-                            </div>
                         </div>
                     </div>
                 @endforeach

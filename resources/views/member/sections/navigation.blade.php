@@ -29,6 +29,12 @@
                             {{ __('views.member.section.navigation.menu_0_1') }}
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('member.users') }}">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            {{ __('views.member.section.navigation.users') }}
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

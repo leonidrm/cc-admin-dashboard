@@ -99,6 +99,9 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'namespace' => 'Member', 
     // Member Dashboard
     Route::get('/', 'DashboardController@index')->name('dashboard');
 
+	// Member Users
+	Route::get('users', 'UserController@index')->name('users');
+
 });
 
 Route::get('/', 'HomeController@index');
