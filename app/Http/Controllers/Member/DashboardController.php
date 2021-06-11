@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Arcanedev\LogViewer\LogViewer;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class DashboardController extends Controller
@@ -28,9 +29,11 @@ class DashboardController extends Controller
     /**
      * @return View
      */
-    public function index(): View
-    {
-        return view('member.dashboard');
+	public function index(Request $request)
+	{
+		$companyId = $request->user()->company_id;
+		$company = DB::table('companies')->where('id', '=', $companyId)->get()->first();
+        return view('member.dashboard', ['company' => $company]);
     }
 
     public function getLogChartData(Request $request): Response

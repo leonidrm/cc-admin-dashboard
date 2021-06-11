@@ -1,8 +1,9 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
-        <div class="navbar nav_title" style="border: 0;">
+        <div class="navbar nav_title">
             <a href="{{ route('member.dashboard') }}" class="site_title">
-                <span>{{ config('app.name') }}</span>
+                {{--<span>{{ config('app.name') }}</span>--}}
+                <img src="{{ asset('/storage/images/companies/' . $company->logo) }}" alt="" />
             </a>
         </div>
 
@@ -15,8 +16,6 @@
             </div>
         </div>
         <!-- /menu profile quick info -->
-
-        <br/>
 
         <!-- sidebar menu -->
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">

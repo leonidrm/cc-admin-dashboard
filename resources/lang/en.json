@@ -325,5 +325,18 @@
     "views.member.welcome.register": "Sign up",
     "views.member.welcome.admin": "Dashboard",
     "views.member.welcome.member_area": "Member Area",
-    "views.member.welcome.guide": "Start Tour"
+    "views.member.welcome.guide": "Start Tour",
+    "**************************** Member users **********************": "Member users i18n",
+    "views.member.users.title": ":name users",
+    "views.member.users.company": "Company",
+    "views.member.users.email": "E-Mail",
+    "views.member.users.user_name": "Username",
+    "views.member.users.status": "Status",
+    "views.member.users.created_at": "Created",
+    "views.member.users.updated_at": "Last updated",
+    "views.member.users.last_login": "Last login",
+    "views.member.users.active": "Active",
+    "views.member.users.inactive": "Inactive",
+    "views.member.users.confirmed": "Confirmed",
+    "views.member.users.not_confirmed": "Not confirmed"
 }

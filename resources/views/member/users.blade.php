@@ -1,14 +1,11 @@
 @extends('member.layouts.member')
 
-{{-- Overwriting the default section --}}
-@section('title')
-    {!! __('views.admin.company.users.title', ['url' => asset('/storage/images/companies/' . $company->logo), 'name' => $company->name]) !!}
-@overwrite
+@section('title',__('views.member.users.title', ['name' => $company->name]) )
 
 @section('content')
     <div class="clearfix"></div>
 
-    <div class="company-page clearfix">
+    <div class="users-page clearfix">
         <div class="tabs clearfix">
             <ul class="tab-header">
                 @foreach($clients as $client)
@@ -32,55 +29,49 @@
                                     <td>{{ $client->id }}</td>
                                 </tr>
                                 <tr>
-                                    <td>{{ __('views.admin.clients.index.company') }}</td>
+                                    <td>{{ __('views.member.users.company') }}</td>
                                     <td>{{ $client->company->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td>{{ __('views.admin.clients.index.user_name') }}</td>
+                                    <td>{{ __('views.member.users.user_name') }}</td>
                                     <td>{{ $client->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td>{{ __('views.admin.clients.index.email') }}</td>
+                                    <td>{{ __('views.member.users.email') }}</td>
                                     <td>{{ $client->email }}</td>
                                 </tr>
                                 <tr>
-                                    <td>{{ __('views.admin.clients.index.status') }}</td>
+                                    <td>{{ __('views.member.users.status') }}</td>
                                     <td>
                                         @if($client->active)
-                                            <span class="label label-primary">{{ __('views.admin.clients.index.active') }}</span>
+                                            <span class="label label-primary">{{ __('views.member.users.active') }}</span>
                                         @else
-                                            <span class="label label-danger">{{ __('views.admin.clients.index.inactive') }}</span>
+                                            <span class="label label-danger">{{ __('views.member.users.inactive') }}</span>
                                         @endif
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>{{ __('views.admin.clients.index.confirmed') }}</td>
+                                    <td>{{ __('views.member.users.confirmed') }}</td>
                                     <td>
                                         @if($client->confirmed)
-                                            <span class="label label-success">{{ __('views.admin.clients.index.confirmed') }}</span>
+                                            <span class="label label-success">{{ __('views.member.users.confirmed') }}</span>
                                         @else
-                                            <span class="label label-warning">{{ __('views.admin.clients.index.not_confirmed') }}</span>
+                                            <span class="label label-warning">{{ __('views.member.users.not_confirmed') }}</span>
                                         @endif
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>{{ __('views.admin.clients.index.created_at') }}</td>
+                                    <td>{{ __('views.member.users.created_at') }}</td>
                                     <td>{{ $client->created_at }}</td>
                                 </tr>
                                 <tr>
-                                    <td>{{ __('views.admin.clients.index.updated_at') }}</td>
+                                    <td>{{ __('views.member.users.updated_at') }}</td>
                                     <td>{{ $client->updated_at }}</td>
                                 </tr>
                                 <tr>
-                                    <td>{{ __('views.admin.clients.index.last_login') }}</td>
+                                    <td>{{ __('views.member.users.last_login') }}</td>
                                     <td>{{ $client->last_login }}</td>
                                 </tr>
-                                @if($client->deleted_at)
-                                <tr>
-                                    <td>{{ __('views.admin.clients.index.deleted_at') }}</td>
-                                    <td>{{ $client->deleted_at }}</td>
-                                </tr>
-                                @endif
                                 </tbody>
                             </table>
                         </div>
