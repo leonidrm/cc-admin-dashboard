@@ -34,6 +34,12 @@
                             {{ __('views.member.section.navigation.users') }}
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('member.campaigns') }}">
+                            <i class="fa fa-list" aria-hidden="true"></i>
+                            {{ __('views.member.section.navigation.campaigns') }}
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

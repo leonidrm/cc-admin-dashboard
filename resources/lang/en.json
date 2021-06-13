@@ -288,7 +288,7 @@
     "views.admin.company.edit.cancel": "Cancel",
     "views.admin.company.edit.save": "Save",
     "views.admin.company.edit.update": "Update",
-    "views.admin.company.users.title": "<img class='company-logo' src=':url' alt='company_logo' /> :name",
+    "views.admin.company.users.title": "<img class='company-logo' src=':url' alt='company_logo' /> :name users",
     "**************************** Campaign Management *************************************************": "Campaign Management i18n",
     "views.admin.campaign.upload.title": "Upload Campaign Data",
     "views.admin.campaign.upload.cancel": "Cancel",
@@ -338,5 +338,7 @@
     "views.member.users.active": "Active",
     "views.member.users.inactive": "Inactive",
     "views.member.users.confirmed": "Confirmed",
-    "views.member.users.not_confirmed": "Not confirmed"
+    "views.member.users.not_confirmed": "Not confirmed",
+    "**************************** Member campaigns **********************": "Member campaigns i18n",
+    "views.member.campaigns.title": ":name campaigns"
 }

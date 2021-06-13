@@ -102,6 +102,8 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'namespace' => 'Member', 
 	// Member Users
 	Route::get('users', 'UserController@index')->name('users');
 
+	// Member Campaigns
+	Route::get('campaigns', 'CampaignController@index')->name('campaigns');
 });
 
 Route::get('/', 'HomeController@index');
