@@ -184,3 +184,7 @@ mix.styles([
     'node_modules/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css',
     'resources/assets/member/css/dashboard.css',
 ], 'public/assets/member/css/dashboard.css').version();
+
+mix.scripts([
+    'resources/assets/member/js/campaign.js',
+], 'public/assets/member/js/campaign.js').version();

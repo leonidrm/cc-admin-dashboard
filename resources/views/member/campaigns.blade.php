@@ -6,45 +6,58 @@
     <div class="clearfix"></div>
 
     <div class="users-page clearfix">
-        <div class="tabs clearfix">
-            <ul class="tab-header">
-                @foreach($campaigns as $campaign)
-                    <li @if ($loop->first)class="active"@endif>
-                        <a href="#tab-{{ $campaign->id }}" data-toggle="tab">
-                            <span class="name">{{ $campaign->name }}</span>
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
+        @if (count($campaigns))
+            <table class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>{{ __('views.member.campaigns.name') }}</th>
+                    <th>{{ __('views.member.campaigns.created_at') }}</th>
+                    <th>{{ __('views.member.campaigns.updated_at') }}</th>
+                </tr>
+                </thead>
 
-            <div class="tab-content">
+                <tbody>
                 @foreach($campaigns as $campaign)
-                    <div class="tab-pane fade @if($loop->first) in active @endif" id="tab-{{ $campaign->id }}">
-                        <div class="client-details">
-                            <table class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
-                                <tbody>
-                                <tr>
-                                    <td>ID</td>
-                                    <td>{{ $campaign->id }}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{ __('views.member.users.user_name') }}</td>
-                                    <td>{{ $campaign->name }}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{ __('views.member.users.created_at') }}</td>
-                                    <td>{{ $campaign->created_at }}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{ __('views.member.users.updated_at') }}</td>
-                                    <td>{{ $campaign->updated_at }}</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                    <tr>
+                        <td>{{ $loop->index + 1 }}</td>
+                        <td><a href="#" class="js-show-campaign" data-campaign-id="{{ $campaign->id }}" data-campaign-name="{{ $campaign->name }}">{{ $campaign->name }}</a></td>
+                        <td>{{ $campaign->created_at }}</td>
+                        <td>{{ $campaign->updated_at }}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+
+            <div class="modal fade" id="newslettersModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                            <h4 class="modal-title">Modal title</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="newsletters-list"></div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
-                @endforeach
+                </div>
             </div>
-        </div>
+
+            <script>
+				window.newsletters = {!! $newsletters !!};
+            </script>
+        @else
+            {{ __('views.member.campaigns.not_available') }}
+        @endif
     </div>
+@endsection
+
+@section('scripts')
+    @parent
+    {{ Html::script(mix('assets/member/js/campaign.js')) }}
 @endsection

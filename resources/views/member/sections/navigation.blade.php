@@ -3,7 +3,11 @@
         <div class="navbar nav_title">
             <a href="{{ route('member.dashboard') }}" class="site_title">
                 {{--<span>{{ config('app.name') }}</span>--}}
-                <img src="{{ asset('/storage/images/companies/' . $company->logo) }}" alt="" />
+                @if($company->logo)
+                    <img src="{{ asset('/storage/images/companies/' . $company->logo) }}" alt="" />
+                @else
+                    {{ $company->name }}
+                @endif
             </a>
         </div>
 

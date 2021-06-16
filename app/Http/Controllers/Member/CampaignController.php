@@ -40,7 +40,15 @@ class CampaignController extends Controller
 		$company = DB::table('companies')->where('id', '=', $companyId)->get()->first();
 		$campaigns = DB::table('campaigns')->where('company_id', '=', $companyId)->get();
 
-		return view('member.campaigns', ['company' => $company, 'campaigns' => $campaigns]);
+		$campaignIds = [];
+
+		foreach ($campaigns as $index => $campaign) {
+			$campaignIds[$index] = $campaign->id;
+		}
+
+		$newsletters = DB::table('newsletters')->whereIn('campaign_id', $campaignIds)->get();
+
+		return view('member.campaigns', ['company' => $company, 'campaigns' => $campaigns, 'newsletters' => $newsletters]);
 	}
 
 }
