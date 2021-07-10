@@ -98,6 +98,13 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'namespace' => 'Member', 
     // Member Dashboard
     Route::get('/', 'DashboardController@index')->name('dashboard');
 
+	Route::get('dashboard/log-chart', 'DashboardController@getLogChartData')->name('dashboard.log.chart');
+	Route::get('dashboard/company-data', 'DashboardController@getCompanyData')->name('dashboard.company.data');
+
+
+
+
+
 });
 
 Route::get('/', 'HomeController@index');
