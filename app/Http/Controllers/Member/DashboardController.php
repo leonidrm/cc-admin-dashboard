@@ -96,4 +96,30 @@ class DashboardController extends Controller
 
         return response($data);
     }
+
+    public function getCompanyData(Request $request): Response
+    {
+        $data = [];
+        $companyId = $request->user()->company_id;
+        $campaigns = DB::table('campaigns')->where('company_id', '=', $companyId)->get();
+
+        $data['company'] = DB::table('companies')->where('id', '=', $companyId)->get()->first();
+        $data['users'] = DB::table('users')->where('company_id', '=', $companyId)->get();
+        $data['currentUserId'] = $request->user()->id;
+        $data['campaigns'] = $campaigns;
+
+        $campaignIds = [];
+
+        foreach ($data['campaigns'] as $index => $campaign) {
+            $campaignIds[$index] = $campaign->id;
+        }
+
+        $newsletters = DB::table('newsletters')->whereIn('campaign_id', $campaignIds)->get();
+
+        foreach ($newsletters as $index => $newsletter) {
+            $data['newsletters'][$index] = $newsletter;
+        }
+
+        return response($data);
+    }
 }
