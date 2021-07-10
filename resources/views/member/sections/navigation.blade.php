@@ -1,8 +1,13 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
-        <div class="navbar nav_title" style="border: 0;">
+        <div class="navbar nav_title">
             <a href="{{ route('member.dashboard') }}" class="site_title">
-                <span>{{ config('app.name') }}</span>
+                {{--<span>{{ config('app.name') }}</span>--}}
+                @if($company->logo)
+                    <img src="{{ asset('/storage/images/companies/' . $company->logo) }}" alt="" />
+                @else
+                    {{ $company->name }}
+                @endif
             </a>
         </div>
 
@@ -16,8 +21,6 @@
         </div>
         <!-- /menu profile quick info -->
 
-        <br/>
-
         <!-- sidebar menu -->
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
@@ -27,6 +30,18 @@
                         <a href="{{ route('member.dashboard') }}">
                             <i class="fa fa-home" aria-hidden="true"></i>
                             {{ __('views.member.section.navigation.menu_0_1') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('member.users') }}">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            {{ __('views.member.section.navigation.users') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('member.campaigns') }}">
+                            <i class="fa fa-list" aria-hidden="true"></i>
+                            {{ __('views.member.section.navigation.campaigns') }}
                         </a>
                     </li>
                 </ul>

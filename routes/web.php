@@ -87,6 +87,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('companies/{company}/edit', 'CompanyController@edit')->name('companies.edit');
     Route::put('companies/{company}', 'CompanyController@update')->name('companies.update');
     Route::any('companies/{id}/destroy', 'CompanyController@destroyCompany')->name('companies.destroy');
+	Route::get('companies/{company}/users', 'CompanyController@users')->name('companies.users');
 
     //CSV Uploads
     Route::get('campaign/upload', 'CampaignController@upload')->name('campaign.upload');
@@ -98,13 +99,13 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'namespace' => 'Member', 
     // Member Dashboard
     Route::get('/', 'DashboardController@index')->name('dashboard');
 
+	// Member Users
+	Route::get('users', 'UserController@index')->name('users');
+
+	// Member Campaigns
+	Route::get('campaigns', 'CampaignController@index')->name('campaigns');
 	Route::get('dashboard/log-chart', 'DashboardController@getLogChartData')->name('dashboard.log.chart');
 	Route::get('dashboard/company-data', 'DashboardController@getCompanyData')->name('dashboard.company.data');
-
-
-
-
-
 });
 
 Route::get('/', 'HomeController@index');

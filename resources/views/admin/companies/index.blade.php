@@ -6,10 +6,10 @@
     <div class="row">
         <a class="btn btn-info pull-right" href="{{ route('admin.companies.add') }}"
            data-toggle="tooltip" data-placement="top"
-           data-title="{{ __('views.admin.companies.index.add') }}">
+           data-title="{{ __('views.admin.company.index.add') }}">
             <i class="fa fa-pencil"></i>
         </a>
-        <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+        <table class="table table-striped table-bordered dt-responsive nowrap table-align-middle" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th>@sortablelink('logo', __('views.admin.company.index.logo'),['page' => $companies->currentPage()])
@@ -30,11 +30,15 @@
                 <tr>
                     <td>
                         @if($company->logo)
-                            <img class="image rounded-circle" src="{{asset('/storage/images/companies/' . $company->logo)}}"
-                                 alt="company_logo" style="width: 80px;height: 80px; padding: 10px; margin: 0;">
+                            <a href="{{ route('admin.companies.users', [$company->id]) }}">
+                                <img class="company-logo" src="{{asset('/storage/images/companies/' . $company->logo)}}" alt="company_logo"
+                                     style="max-height: 35px;" />
+                            </a>
                         @endif
                     </td>
-                    <td>{{ $company->name }}</td>
+                    <td>
+                        <a href="{{ route('admin.companies.users', [$company->id]) }}">{{ $company->name }}</a>
+                    </td>
                     <td>{{ $company->industry->name }}</td>
                     <td>
                         @if($company->active)

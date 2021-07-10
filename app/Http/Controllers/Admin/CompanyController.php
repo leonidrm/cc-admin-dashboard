@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Auth\User\User;
 use App\Models\Company;
 use App\Models\Industry;
 use App\Repositories\Access\Company\EloquentCompanyRepository;
@@ -123,6 +124,17 @@ class CompanyController extends Controller
 
         return redirect()->intended(route('admin.companies'));
     }
+
+	public function users(Company $company)
+	{
+		$query = User::withTrashed()->whereHas('roles', function ($query) {
+			$query->whereIn('name', ['client']);
+		});
+
+		$clients = $query->where('company_id', '=', $company->id)->sortable(['id' => 'asc'])->paginate();
+
+		return view('admin.companies.users', ['company' => $company, 'clients' => $clients]);
+	}
 
     /**
      * Remove the specified resource from storage.

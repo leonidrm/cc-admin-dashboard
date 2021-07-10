@@ -1,12 +1,103 @@
 .guided-tour {
-    margin-top: 20px;
-    cursor: pointer;
+  margin-top: 20px;
+  cursor: pointer;
 }
-
-
-
-
-
-
-
-
+.table-align-middle.table > tbody > tr > td {
+  vertical-align: middle;
+}
+.main_menu .fa {
+  vertical-align: -10%;
+}
+.nav_title {
+  height: auto;
+  min-height: 0;
+  border: none;
+  float: none;
+}
+.nav-sm .nav_title {
+  height: auto;
+}
+.site_title {
+  width: 100%;
+  height: auto;
+  padding: 15px 15px 0;
+  display: block;
+  line-height: 32px;
+}
+.nav-sm .site_title {
+  padding: 15px 5px 5px;
+  justify-content: center;
+}
+.site_title img {
+  max-width: 100%;
+  max-height: 85px;
+  display: block;
+}
+.profile_info {
+  width: 100%;
+  float: none;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.page-title .title_left {
+  margin-bottom: 10px;
+}
+/* =========================================================================
+   Company page
+ =========================================================================== */
+.company-logo {
+  max-height: 80px;
+  margin: 0;
+}
+.page-title .company-logo {
+  width: auto;
+  height: 50px;
+  display: inline-block;
+  vertical-align: -66%;
+  margin: -5px 7px 0 0;
+}
+.users-page .tabs {
+  margin-bottom: 20px;
+}
+.users-page .tab-header {
+  float: left;
+  width: 20%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.users-page .tab-header a {
+  display: block;
+  padding: 15px;
+  line-height: 1;
+  overflow: hidden;
+}
+.users-page .tab-header li.active a {
+  background: #fff;
+}
+.users-page .tab-header .name {
+  font-size: 20px;
+  display: block;
+  color: #444;
+  margin-bottom: 5px;
+}
+.users-page .tab-header .email {
+  font-size: 14px;
+  display: block;
+  color: #aaa;
+}
+.users-page .tab-content {
+  float: left;
+  width: 80%;
+  padding-left: 20px;
+}
+.users-page .client-details .label {
+  font-size: 1em;
+}
+/* =========================================================================
+   Campaign page
+ =========================================================================== */
+.newsletters-list .list-item {
+  margin-bottom: 20px;
+}
+/*# sourceMappingURL=member.css.map */
