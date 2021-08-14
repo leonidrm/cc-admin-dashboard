@@ -47,5 +47,4 @@ class UserController extends Controller
 
 		return view('member.users', ['company' => $company, 'clients' => $clients]);
 	}
-
 }
