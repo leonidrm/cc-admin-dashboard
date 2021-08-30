@@ -30,7 +30,6 @@
                     </a>
                 </td>
             </tr>
-
             <tr>
                 <th>{{ __('views.admin.clients.show.active') }}</th>
                 <td>

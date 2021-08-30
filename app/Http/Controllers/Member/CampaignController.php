@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Member;
 
-use App\Models\Auth\User\User;
 use App\Repositories\Access\Company\EloquentCompanyRepository;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View as IlluminateView;
@@ -50,5 +49,4 @@ class CampaignController extends Controller
 
 		return view('member.campaigns', ['company' => $company, 'campaigns' => $campaigns, 'newsletters' => $newsletters]);
 	}
-
 }
